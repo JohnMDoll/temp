@@ -1,4 +1,5 @@
 import { Route, Routes } from "react-router-dom"
+import { Home_Carousel } from "./components/home/hood_carousel";
 import { getHoods } from "./components/managers/hoods_manager";
 import { getMurals } from "./components/managers/murals_manager";
 import { getSavedMurals } from "./components/managers/savedmurals_manager";
@@ -9,6 +10,7 @@ import { getSavedMurals } from "./components/managers/savedmurals_manager";
 export const Murals = () => {
 	return (
       <div>
+        {Home_Carousel()}
       </div>
       //All the different pages we want to route to go here ->
     // <Routes>
