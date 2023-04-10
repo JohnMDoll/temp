@@ -1,10 +1,7 @@
 import { Route, Routes } from "react-router-dom"
-import { Home_Carousel } from "./components/home/hood_carousel";
-import { getHoods } from "./components/managers/hoods_manager";
-import { getMurals } from "./components/managers/murals_manager";
-import { getSavedMurals } from "./components/managers/savedmurals_manager";
 // import { Authorized } from "./views/Authorized"
 // import { ApplicationViews } from "./views/ApplicationViews"
+import { NavBar } from "./components/nav/NavBar";
 
 
 export const Murals = () => {
@@ -20,7 +17,7 @@ export const Murals = () => {
     //   <Route
     //     path="*"
     //     element={
-    //       // <Authorized>
+    // <Authorized>
     //         <>
     //           {/* <ApplicationViews /> */}
     //         </>
