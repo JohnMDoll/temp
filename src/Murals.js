@@ -5,6 +5,7 @@ import { getSavedMurals } from "./components/managers/savedmurals_manager";
 import { youarehere } from "./utils/UserLocation";
 // import { Authorized } from "./views/Authorized"
 // import { ApplicationViews } from "./views/ApplicationViews"
+import { NavBar } from "./components/managers/nav/NavBar";
 
 
 export const Murals = () => {
