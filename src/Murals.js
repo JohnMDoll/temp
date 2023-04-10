@@ -1,14 +1,17 @@
 import { Route, Routes } from "react-router-dom"
+import { Home_Carousel } from "./components/home/hood_carousel";
 // import { Authorized } from "./views/Authorized"
 // import { ApplicationViews } from "./views/ApplicationViews"
 import { NavBar } from "./components/nav/NavBar";
 
 
 export const Murals = () => {
-	return (
+	return ( <>
+      <NavBar></NavBar>
       <div>
         {Home_Carousel()}
       </div>
+      </>
       //All the different pages we want to route to go here ->
     // <Routes>
     //   {/* <Route path="/" element={<Landing />} />
@@ -25,5 +28,6 @@ export const Murals = () => {
     //     }
     //   />
     // </Routes>
+    
   );
 }
