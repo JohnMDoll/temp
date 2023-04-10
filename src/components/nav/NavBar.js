@@ -8,13 +8,16 @@ export const NavBar = () => {
     return (
         <ul className="navbar">
             <li className="navbar__item active">
-                <Link className="navbar__link" to="/hoods">Neighborhoods</Link>
+                <h1 className="navbar__link" 
+                onClick={() => navigate("/hoods")}>Neighborhoods</h1>
             </li>
             <li className="navbar__item active">
-                <Link className="navbar__link" to="/murals">Murals</Link>
+                <h1 className="navbar__link" 
+                onClick={() => navigate("/murals")}>Murals</h1>
             </li>            
             <li className="navbar__item active">
-                <Link className="navbar__link" to="/home">Home</Link>
+                <h1 className="navbar__link"
+                onClick={() => navigate("/")}>Home</h1>
             </li>     
             {/* {
                 localStorage.getItem("nash_token")

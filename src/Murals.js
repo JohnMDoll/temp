@@ -1,19 +1,15 @@
 import { Route, Routes } from "react-router-dom"
-import { getHoods } from "./components/managers/hoods_manager";
-import { getMurals } from "./components/managers/murals_manager";
-import { getSavedMurals } from "./components/managers/savedmurals_manager";
-import { youarehere } from "./utils/UserLocation";
 // import { Authorized } from "./views/Authorized"
 // import { ApplicationViews } from "./views/ApplicationViews"
-import { NavBar } from "./components/managers/nav/NavBar";
+import { NavBar } from "./components/nav/NavBar";
 
 
 export const Murals = () => {
-youarehere()
   return (
-      <div>
-      </div>
-      //All the different pages we want to route to go here ->
+    <>
+      <NavBar />
+    </>
+    //All the different pages we want to route to go here ->
     // <Routes>
     //   {/* <Route path="/" element={<Landing />} />
     //   <Route path="/home" element={<Landing />} />
@@ -21,7 +17,7 @@ youarehere()
     //   <Route
     //     path="*"
     //     element={
-    //       // <Authorized>
+    // <Authorized>
     //         <>
     //           {/* <ApplicationViews /> */}
     //         </>
