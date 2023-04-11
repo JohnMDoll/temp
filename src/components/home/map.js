@@ -27,7 +27,7 @@ export const Map = () => {
                 />
                 {
                     murals.map(mural => {
-                        return <Marker icon={mural.img} position={[mural.latitude, mural.longitude]} key={mural.id}>
+                        return <Marker  position={[mural.latitude, mural.longitude]} key={mural.id}>
                             <Popup>
                                 <div style={{ textAlign: 'center' }}>
                                     <div><Link to={`/murals/${mural.id}`} className="link_styles"><h5>{mural.name}</h5></Link></div>
