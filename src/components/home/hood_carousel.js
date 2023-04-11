@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 import { getHoods } from "../managers/hoods_manager";
-
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/effect-coverflow";
@@ -30,7 +29,7 @@ export function Home_Carousel() {
     useEffect(() => {
         if (hoods.length > 0){
         const hoodSlides = hoods.map(hood => {
-            return <SwiperSlide> <img key={`event--${hood.id}`} img={`../media/1.jpg`} /> </SwiperSlide>
+            return <SwiperSlide key={`event--${hood.id}`}> <img  src={`./media/${hood.id}.jpg`} onClick={() => navigate(`/hoods/${hood.id}`)} /> </SwiperSlide>
         })
 
         setSlides(hoodSlides)
