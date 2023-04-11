@@ -14,7 +14,7 @@ import "./carousel.css";
 import { EffectCoverflow, Pagination, Navigation } from "swiper";
 import { useNavigate } from "react-router-dom";
 
-export function Home_Carousel() {
+export function HomeCarousel() {
     const [hoods, setHoods] = useState([])
     const [slides, setSlides] = useState(<SwiperSlide></SwiperSlide>)
 
