@@ -7,7 +7,6 @@ import { getHoods } from "../managers/hoods_manager";
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
-
 import "./carousel.css";
 
 // import required modules
@@ -31,7 +30,7 @@ export function Home_Carousel() {
     useEffect(() => {
         if (hoods.length > 0){
         const hoodSlides = hoods.map(hood => {
-            return <SwiperSlide> <img key={`event--${hood.id}`} src={"https://jenaroundtheworld.com/wp-content/uploads/2018/11/IMG_1063.jpg"} /> </SwiperSlide>
+            return <SwiperSlide> <img key={`event--${hood.id}`} img={`../media/1.jpg`} /> </SwiperSlide>
         })
 
         setSlides(hoodSlides)
