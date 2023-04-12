@@ -19,23 +19,22 @@ body {
 
 .swiper {
     width: 100%;
-    padding-top: 50px;
-    padding-bottom: 50px;
+    padding-top: 2vh;
+    padding-bottom: 5vh;
 }
 
 .swiper-slide {
     background-position: center;
     background-size: cover;
-    width: 200px;
-    height: 200px;
+    width: 20vh;
+    height: auto;
     border-radius: 20px;
     overflow: hidden;
 }
 
 .swiper-slide img {
     display: block;
-    height: 200px;
-    width: 200px;
-    width: 100%;
+    height: auto;
+    width: 20vh;
     object-fit: fill;
 }
