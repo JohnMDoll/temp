@@ -6,21 +6,7 @@ export const Neighborhood = (props) => {
     const navigate = useNavigate()
     return (
         <>
-            <h1>hi  </h1>
-            <h1>hi  </h1>
-            <h1>hi  </h1>
-            <h1>hi  </h1>
-            <h1>hi  </h1>
-            <h1>hi  </h1>
-            <h1>hi  </h1>
-            <h1>hi  </h1>
-            <h1>hi  </h1>
-            <h1>hi  </h1>
-            <h1>hi  </h1>
-            <h1>hi  </h1>
-            <h1>hi  </h1>
-            <h1>hi  </h1>
-            <h1>hi  </h1>
+
 
         </>
     )
