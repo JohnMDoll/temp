@@ -1,13 +1,9 @@
-
-.map--container{
-    border: 1px solid black;
-    height: 70vh;
-    width: 90vw;
-}
-
 #map{
     display: flex;
     margin-inline: auto;
+    border: 2px solid black;
+    border-radius: 15px;
+    box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.461);
     height: 60vh;
     width: 90vw;
 }
