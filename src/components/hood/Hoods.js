@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react"
-import { useNavigate } from "react-router-dom"
-import "./Hood.css"
+// import "./Hood.css"
+import { getHoods } from "../managers/hoods_manager"
+import { getMurals } from "../managers/murals_manager"
 
-export const Neighborhood = (props) => {
-    const navigate = useNavigate()
+export const hood = () => {
     return (
-        <>
+        <div>
+        <h1> hello </h1>
+        
 
-
-        </>
+        </div>
     )
 }
