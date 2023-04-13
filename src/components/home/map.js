@@ -5,10 +5,11 @@ import { Link } from 'react-router-dom'
 import L from 'leaflet';
 import { getMurals } from '../managers/murals_manager'
 import "./map.css"
+import { youarehere } from '../../utils/UserLocation';
 
 export const Map = () => {
     const [murals, setMurals] = useState([])
-
+    const [userLocation, setUserLocation] = useState("[36.1626638,-86.7816016]")
     useEffect(
         () => {
             if (murals.length === 0) {
@@ -17,8 +18,15 @@ export const Map = () => {
                         setMurals(muralsArray)
                     })
             }
+            youarehere()
+            const location = localStorage.getItem('userLocation')
+            setUserLocation(location)
         }, []
     )
+
+    useEffect(()=>{
+        
+    },[userLocation])
 
     const iconBuilder = (mural) => {
         let [,thisUrl] = mural.img.split("/media/")
@@ -33,7 +41,7 @@ export const Map = () => {
     }
 
     return <>
-            <MapContainer id="map" center={[36.151326, -86.8535674]} zoom={13}>
+            <MapContainer id="map" center={JSON.parse(userLocation)} zoom={13}>
                 <TileLayer
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
