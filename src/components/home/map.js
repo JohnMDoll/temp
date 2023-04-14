@@ -26,12 +26,12 @@ export const Map = ({activeHood}) => {
     )
 
     useEffect(() => {
-        if (mapRef.current) {
+        if (mapRef.current && activeHood) {
             const map = mapRef.current
-            const center = JSON.parse(userLocation)
+            const center = [activeHood.center_latitude, activeHood.center_longitude]
             map.flyTo(center, 13)
         }
-    }, [mapRef, userLocation])
+    }, [mapRef, activeHood])
 
     const iconBuilder = (mural) => {
         let [, thisUrl] = mural.img.split("/media/")
