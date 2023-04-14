@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react"
 import { getHoods } from "../managers/hoods_manager"
 import { getMurals } from "../managers/murals_manager"
 
-export const hood = () => {
+export const Hood = () => {
     return (
         <div>
         <h1> hello </h1>
