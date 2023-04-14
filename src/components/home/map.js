@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import 'leaflet/dist/leaflet.css'
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 import { Link } from 'react-router-dom'
@@ -10,6 +10,8 @@ import { youarehere } from '../../utils/UserLocation';
 export const Map = () => {
     const [murals, setMurals] = useState([])
     const [userLocation, setUserLocation] = useState("[36.1626638,-86.7816016]")
+    const mapRef = useRef(null)
+
     useEffect(
         () => {
             if (murals.length === 0) {
@@ -24,15 +26,19 @@ export const Map = () => {
         }, []
     )
 
-    useEffect(()=>{
-        
-    },[userLocation])
+    useEffect(() => {
+        if (mapRef.current) {
+            const map = mapRef.current
+            const center = JSON.parse(userLocation)
+            map.flyTo(center, 13)
+        }
+    }, [mapRef, userLocation])
 
     const iconBuilder = (mural) => {
-        let [,thisUrl] = mural.img.split("/media/")
+        let [, thisUrl] = mural.img.split("/media/")
         thisUrl = decodeURIComponent(thisUrl)
         const marker = L.icon({
-            iconUrl : thisUrl,
+            iconUrl: thisUrl,
             iconSize: [40, 40],
             iconAnchor: [12, 41],
             popupAnchor: [1, -34]
@@ -41,14 +47,14 @@ export const Map = () => {
     }
 
     return <>
-            <MapContainer id="map" center={JSON.parse(userLocation)} zoom={13}>
-                <TileLayer
-                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                />
-                {
-                    murals.map(mural => {
-                        return (
+        <MapContainer id="map" center={[36.1626638,-86.7816016]} zoom={13} ref={map => { mapRef.current = map }}>
+            <TileLayer
+                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            />
+            {
+                murals.map(mural => {
+                    return (
                         <><Marker icon={iconBuilder(mural)} position={[mural.latitude, mural.longitude]} key={`marker--${mural.id}`}>
                             <Popup>
                                 <div style={{ textAlign: 'center' }}>
@@ -57,9 +63,9 @@ export const Map = () => {
                                 </div>
                             </Popup>
                         </Marker></>
-                        )
-                    })
-                }
-            </MapContainer>
+                    )
+                })
+            }
+        </MapContainer>
     </>
 }
