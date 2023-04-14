@@ -6,8 +6,6 @@ if ("geolocation" in navigator) {
   // get the user's current location
     navigator.geolocation.getCurrentPosition(function (position) {
     // log the latitude and longitude
-    console.log("Latitude: " + position.coords.latitude);
-    console.log("Longitude: " + position.coords.longitude);
     userLoc = `[${position.coords.latitude},${position.coords.longitude}]`
     localStorage.setItem('userLocation', userLoc)
     return

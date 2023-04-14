@@ -12,11 +12,11 @@ import "./carousel.css";
 import { EffectCoverflow, Pagination, Navigation } from "swiper";
 import { useNavigate } from "react-router-dom";
 
-export function HomeCarousel() {
-    const [hoods, setHoods] = useState([])
+export function HomeCarousel({viewedHood, hoods, setHoods}) {
+    // const [hoods, setHoods] = useState([])
     const [slides, setSlides] = useState(<SwiperSlide></SwiperSlide>)
-
-
+    const [activeSlide, setActiveSlide] = useState(0)
+    // const [activeHood, setActiveHood] = useState({})
 
     const getAllHoods = () => {
         getHoods().then(data => setHoods(data))
@@ -27,13 +27,26 @@ export function HomeCarousel() {
     }, [])
 
     useEffect(() => {
-        if (hoods.length > 0){
-        const hoodSlides = hoods.map(hood => {
-            return <SwiperSlide key={`event--${hood.id}`}> <img  src={`./media/${hood.id}.jpg`} onClick={() => navigate(`/hoods/${hood.id}`)} /> </SwiperSlide>
-        })
+        viewedHood(hoods[0])
+    }, [hoods])
 
-        setSlides(hoodSlides)
-    }
+    useEffect(() => {
+        const thisSlide = document.getElementsByClassName('swiper-slide-active')
+        console.log(thisSlide[0].id)
+        const thisHood = hoods.find(h => h.id == thisSlide[0].id)
+        viewedHood(thisHood)
+    },[activeSlide])
+
+    useEffect(() => {
+        if (hoods.length > 0) {
+            const hoodSlides = hoods.map(hood => {
+                return <SwiperSlide id={hood.id} key={`event--${hood.id}`}>
+                    <img src={`./media/${hood.id}.jpg`} onClick={() => navigate(`/hoods/${hood.id}`)} />
+                </SwiperSlide>
+            })
+
+            setSlides(hoodSlides)
+        }
     }, [hoods])
 
     const navigate = useNavigate()
@@ -52,14 +65,15 @@ export function HomeCarousel() {
                     modifier: 1,
                     slideShadows: true,
                 }}
+                onTransitionEnd={(swiper) => setActiveSlide(swiper.realIndex)}
                 pagination={true}
                 modules={[EffectCoverflow, Pagination, Navigation]}
                 className="mySwiper"
             >
-                
-                    {
-                        slides
-                    }
+
+                {
+                    slides
+                }
 
             </Swiper>
         </>

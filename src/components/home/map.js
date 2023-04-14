@@ -5,9 +5,8 @@ import { Link } from 'react-router-dom'
 import L from 'leaflet';
 import { getMurals } from '../managers/murals_manager'
 import "./map.css"
-import { youarehere } from '../../utils/UserLocation';
 
-export const Map = () => {
+export const Map = ({activeHood}) => {
     const [murals, setMurals] = useState([])
     const [userLocation, setUserLocation] = useState("[36.1626638,-86.7816016]")
     const mapRef = useRef(null)
@@ -20,7 +19,7 @@ export const Map = () => {
                         setMurals(muralsArray)
                     })
             }
-            youarehere()
+
             const location = localStorage.getItem('userLocation')
             setUserLocation(location)
         }, []
