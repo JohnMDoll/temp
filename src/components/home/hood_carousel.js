@@ -12,11 +12,9 @@ import "./carousel.css";
 import { EffectCoverflow, Pagination, Navigation } from "swiper";
 import { useNavigate } from "react-router-dom";
 
-export function HomeCarousel({viewedHood, hoods, setHoods}) {
-    // const [hoods, setHoods] = useState([])
+export function HomeCarousel({ activeHood, viewedHood, hoods, setHoods }) {
     const [slides, setSlides] = useState(<SwiperSlide></SwiperSlide>)
     const [activeSlide, setActiveSlide] = useState(0)
-    // const [activeHood, setActiveHood] = useState({})
 
     const getAllHoods = () => {
         getHoods().then(data => setHoods(data))
@@ -31,27 +29,31 @@ export function HomeCarousel({viewedHood, hoods, setHoods}) {
     }, [hoods])
 
     useEffect(() => {
+        //Actually, now that we've done this, since the hoods indexes and the slides indexes are the same, 
+        //we could've just set thisHood = hoods[activeSlide] instead of doing the getElements thing
+        //const thisHood = hoods[activeSlide]
+        //or just:
+        //viewedHood(hoods[activeSlide])
         const thisSlide = document.getElementsByClassName('swiper-slide-active')
-        console.log(thisSlide[0].id)
         const thisHood = hoods.find(h => h.id == thisSlide[0].id)
         viewedHood(thisHood)
-    },[activeSlide])
+    }, [activeSlide])
 
     useEffect(() => {
         if (hoods.length > 0) {
             const hoodSlides = hoods.map(hood => {
-                return <SwiperSlide id={hood.id} key={`event--${hood.id}`}>
+                return <SwiperSlide id={hood.id} title={`${hood.name}`} key={`event--${hood.id}`}>
                     <img src={`./media/${hood.id}.jpg`} onClick={() => navigate(`/hoods/${hood.id}`)} />
                 </SwiperSlide>
             })
-
             setSlides(hoodSlides)
         }
     }, [hoods])
 
     const navigate = useNavigate()
+
     return (
-        <>
+        <>  {activeHood &&
             <Swiper
                 effect={"coverflow"}
                 grabCursor={true}
@@ -68,6 +70,7 @@ export function HomeCarousel({viewedHood, hoods, setHoods}) {
                 onTransitionEnd={(swiper) => setActiveSlide(swiper.realIndex)}
                 pagination={true}
                 modules={[EffectCoverflow, Pagination, Navigation]}
+                // initialSlide={hoods.findIndex(hood => hood.id === activeHood.id) !== -1 ? hoods.findIndex(hood => hood.id === activeHood.id) : 0}
                 className="mySwiper"
             >
 
@@ -76,6 +79,6 @@ export function HomeCarousel({viewedHood, hoods, setHoods}) {
                 }
 
             </Swiper>
-        </>
+        }</>
     );
 }
