@@ -70,7 +70,7 @@ export function HomeCarousel({ activeHood, viewedHood, hoods, setHoods }) {
                 onTransitionEnd={(swiper) => setActiveSlide(swiper.realIndex)}
                 pagination={true}
                 modules={[EffectCoverflow, Pagination, Navigation]}
-                // initialSlide={hoods.findIndex(hood => hood.id === activeHood.id) !== -1 ? hoods.findIndex(hood => hood.id === activeHood.id) : 0}
+                initialSlide={hoods.findIndex(hood => hood.id === activeHood.id) !== -1 ? hoods.findIndex(hood => hood.id === activeHood.id) : 0}
                 className="mySwiper"
             >
 
