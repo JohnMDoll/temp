@@ -39,7 +39,7 @@ export const Map = ({ activeHood }) => {
         thisUrl = decodeURIComponent(thisUrl)
         const marker = L.icon({
             iconUrl: thisUrl,
-            iconSize: [40, 40],
+            iconSize: [60, 60],
             iconAnchor: [12, 41],
             popupAnchor: [1, -34]
         })
