@@ -7,3 +7,10 @@
     height: 60vh;
     width: 90vw;
 }
+
+.popup--image {
+    display: flex;
+    margin-inline: auto;
+    /* width: 20vw; */
+    height: 20vh;
+}

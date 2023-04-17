@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import L from 'leaflet';
 import { getMurals } from '../managers/murals_manager'
 import "./map.css"
+import { getWalkingDirectionsURL } from '../../utils/UserDirections';
 
 export const Map = ({ activeHood }) => {
     const [murals, setMurals] = useState([])
@@ -34,9 +35,14 @@ export const Map = ({ activeHood }) => {
         }
     }, [mapRef, activeHood])
 
-    const iconBuilder = (mural) => {
-        let [, thisUrl] = mural.img.split("/media/")
+    const urlReader = (url) => {
+        let [, thisUrl] = url.split("/media/")
         thisUrl = decodeURIComponent(thisUrl)
+        return thisUrl
+    }
+
+    const iconBuilder = (mural) => {
+        const thisUrl = urlReader(mural.img)
         const marker = L.icon({
             iconUrl: thisUrl,
             iconSize: [60, 60],
@@ -60,9 +66,26 @@ export const Map = ({ activeHood }) => {
                                 <Popup>
                                     <div style={{ textAlign: 'center' }}>
                                         <div>
-                                            <Link to={`/murals/${mural.id}`} className="link_styles">
-                                                <h5>{mural.name}</h5>
+                                            <Link
+                                                to={`/murals/${mural.id}`}
+                                                title='Click for mural detail page'
+                                                className="link_styles">
+                                                <h5>{mural.title}</h5>
                                             </Link>
+                                            <img
+                                                className='popup--image'
+                                                src={urlReader(mural.img)} />
+                                            <div className='popup--address'>
+                                                <h5>
+                                                    <div
+                                                        onClick={() => getWalkingDirectionsURL(mural.latitude, mural.longitude)}
+                                                        title='Click for walking directions'
+                                                        className="link_styles" >
+                                                        {mural.address}
+                                                    </div>
+                                                </h5>
+                                            </div>
+
                                         </div>
                                         {/* <div style={{fontStyle: 'italic'}}>{mural.city}, {mural.state}</div> */}
                                     </div>
