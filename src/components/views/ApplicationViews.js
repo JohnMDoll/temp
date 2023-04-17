@@ -12,7 +12,7 @@ export const ApplicationViews = () => {
 			{/* <Route path="/home" element={<Homepage />} /> */}
 			<Route path="/" element={<Home />} />
 			<Route path="/home" element={<Home/>} />
-			<Route path="/hood" element={<Hood/>} />
+			<Route path="/hoods" element={<Hood/>} />
 
 	</Routes>
 	</>
