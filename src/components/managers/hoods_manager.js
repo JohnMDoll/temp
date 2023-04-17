@@ -1,5 +1,7 @@
+
+
 export const getHoods = () => {
-    return fetch("http://localhost:8000/hoods", {
+    return fetch(`${API}/hoods`, {
     })
         .then(response => response.json())
 }
