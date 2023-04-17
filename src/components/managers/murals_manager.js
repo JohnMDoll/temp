@@ -1,3 +1,5 @@
+import { API } from "./ApiAddresses";
+
 export const getMurals = () => {
     return fetch(`${API}/murals`, {
     })

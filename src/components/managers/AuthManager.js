@@ -1,3 +1,5 @@
+import { API } from "./ApiAddresses"
+
 export const loginUser = (user) => {
     return fetch(`${API}/login`, {
       method: "POST",
