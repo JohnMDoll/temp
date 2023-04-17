@@ -1,5 +1,5 @@
 export const getSavedMurals = () => {
-    return fetch("https://orca-app-vwaxr.ondigitalocean.app/savedmurals", {
+    return fetch("http://localhost:8000/savedmurals", {
     })
         .then(response => response.json())
 }

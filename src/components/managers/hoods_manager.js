@@ -1,5 +1,5 @@
 export const getHoods = () => {
-    return fetch("https://orca-app-vwaxr.ondigitalocean.app/hoods", {
+    return fetch("http://localhost:8000/hoods", {
     })
         .then(response => response.json())
 }
