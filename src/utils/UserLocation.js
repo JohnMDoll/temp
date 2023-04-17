@@ -1,5 +1,5 @@
 
-export const youarehere=()=>{
+export const youarehere = () => {
 // check if geolocation is supported by the browser
 let userLoc = "[36.1626638,-86.7816016]"
 if ("geolocation" in navigator) {

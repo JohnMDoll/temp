@@ -18,7 +18,7 @@ export const Home = () => {
             );
             return distance < closest.distance ? { hood: current, distance } : closest;
         }, { hood: null, distance: Infinity });
-            //TODO: need to modify the data structure/type returned by the reducer to match map needs for initial map center and to tell the carousel which slide should be initially active
+        //TODO: need to modify the data structure/type returned by the reducer to match map needs for initial map center and to tell the carousel which slide should be initially active
         if (closestHood.hood) {
             setActiveHood(closestHood.hood);
         }
@@ -26,7 +26,9 @@ export const Home = () => {
 
     useEffect(() => {
         youarehere()
-        closestHood()
+        if (location) {
+            closestHood()
+        }
     }, [hoods]
     )
 

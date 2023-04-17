@@ -6,7 +6,7 @@ import L from 'leaflet';
 import { getMurals } from '../managers/murals_manager'
 import "./map.css"
 
-export const Map = ({activeHood}) => {
+export const Map = ({ activeHood }) => {
     const [murals, setMurals] = useState([])
     const [userLocation, setUserLocation] = useState("[36.1626638,-86.7816016]")
     const mapRef = useRef(null)
@@ -22,6 +22,7 @@ export const Map = ({activeHood}) => {
 
             const location = localStorage.getItem('userLocation')
             setUserLocation(location)
+
         }, []
     )
 
@@ -46,7 +47,7 @@ export const Map = ({activeHood}) => {
     }
 
     return <>
-        <MapContainer id="map" center={[36.1626638,-86.7816016]} zoom={13} ref={map => { mapRef.current = map }}>
+        <MapContainer id="map" center={[36.1626638, -86.7816016]} zoom={13} ref={map => { mapRef.current = map }}>
             <TileLayer
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -54,14 +55,20 @@ export const Map = ({activeHood}) => {
             {
                 murals.map(mural => {
                     return (
-                        <><Marker icon={iconBuilder(mural)} position={[mural.latitude, mural.longitude]} key={`marker--${mural.id}`}>
-                            <Popup>
-                                <div style={{ textAlign: 'center' }}>
-                                    <div><Link to={`/murals/${mural.id}`} className="link_styles"><h5>{mural.name}</h5></Link></div>
-                                    {/* <div style={{fontStyle: 'italic'}}>{mural.city}, {mural.state}</div> */}
-                                </div>
-                            </Popup>
-                        </Marker></>
+                        <>
+                            <Marker icon={iconBuilder(mural)} position={[mural.latitude, mural.longitude]} key={`marker--${mural.id}`}>
+                                <Popup>
+                                    <div style={{ textAlign: 'center' }}>
+                                        <div>
+                                            <Link to={`/murals/${mural.id}`} className="link_styles">
+                                                <h5>{mural.name}</h5>
+                                            </Link>
+                                        </div>
+                                        {/* <div style={{fontStyle: 'italic'}}>{mural.city}, {mural.state}</div> */}
+                                    </div>
+                                </Popup>
+                            </Marker>
+                        </>
                     )
                 })
             }
