@@ -1,5 +1,8 @@
+import { API } from "./ApiAddresses"
+
+
 export const getSavedMurals = () => {
-    return fetch("http://localhost:8000/savedmurals", {
+    return fetch(`${API}/savedmurals`, {
     })
         .then(response => response.json())
 }
