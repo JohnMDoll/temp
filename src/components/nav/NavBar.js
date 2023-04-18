@@ -9,7 +9,7 @@ export const NavBar = () => {
         <ul className="navbar">
             <li className="navbar__item active">
                 <h1 className="navbar__link" 
-                onClick={() => navigate("/hoods")}>Neighborhoods</h1>
+                onClick={() => navigate("/hood")}>Neighborhoods</h1>
             </li>
             <li className="navbar__item active">
                 <h1 className="navbar__link" 

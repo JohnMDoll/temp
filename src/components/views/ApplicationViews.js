@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom"
 import { Home } from "../home/home";
-import { Hood } from "../hood/Hoods";
+import { Hood, HoodsList } from "../hood/Hoods";
+import { MuralsList } from "../mural/muralsList";
 
 
 
@@ -12,7 +13,8 @@ export const ApplicationViews = () => {
 			{/* <Route path="/home" element={<Homepage />} /> */}
 			<Route path="/" element={<Home />} />
 			<Route path="/home" element={<Home/>} />
-			<Route path="/hoods" element={<Hood/>} />
+			<Route path="/hood" element={<HoodsList/>} />
+			<Route path="/murals" element={<MuralsList/>} />
 
 	</Routes>
 	</>
