@@ -6,6 +6,7 @@ import L from 'leaflet';
 import { getMurals } from '../managers/murals_manager'
 import "./map.css"
 import { getWalkingDirectionsURL } from '../../utils/UserDirections';
+import { API } from '../managers/ApiAddresses';
 
 export const Map = ({ activeHood }) => {
     const [murals, setMurals] = useState([])
@@ -38,6 +39,7 @@ export const Map = ({ activeHood }) => {
     const urlReader = (url) => {
         let [, thisUrl] = url.split("/media/")
         thisUrl = decodeURIComponent(thisUrl)
+        thisUrl = `${API}/${thisUrl}`
         return thisUrl
     }
 

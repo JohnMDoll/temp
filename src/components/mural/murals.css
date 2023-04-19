@@ -1,0 +1,45 @@
+.murals_body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  
+  .murals {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .murals section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    width: 100%;
+    max-width: 300px;
+    height: 300px;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .murals section .mural__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  @media only screen and (min-width: 768px) {
+    .murals section {
+      width: calc(50% - 20px);
+    }
+  }
+  
+  @media only screen and (min-width: 992px) {
+    .murals section {
+      width: calc(33.33% - 20px);
+    }
+  }
+  
