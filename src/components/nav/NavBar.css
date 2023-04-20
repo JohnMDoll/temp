@@ -11,8 +11,21 @@
 }
 
 .navbar-toggler{
-  
+display: flex;
 }
+
+
+
+.collapse{
+}
+
+button.navbar-toggler{
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  text-align: left;
+}
+
 
 @media screen and (max-width:400px) {
   h1.navbar__link {
@@ -20,8 +33,8 @@
   }
 }
 
-.navbar__item {
-  /* margin-right: 1rem; */
+.navbar-item {
+  margin-top: 5px;
 }
 
 .navbar__item.active {
@@ -31,6 +44,7 @@
 .navbar__link {
   text-decoration: none;
   color: white;
+
 }
 
 .navbar__link:hover {
