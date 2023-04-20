@@ -1,13 +1,17 @@
 .navbar {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   background-color: #333;
   color: white;
   list-style: none;
-  padding: 1rem;
-  height: 5vh;
-  margin-block: 0;
+  padding: auto;
+  margin: auto;
+  z-index: 2;
+}
+
+.navbar-toggler{
+  
 }
 
 @media screen and (max-width:400px) {
@@ -36,4 +40,8 @@
 
 .navbar__logout {
   margin-left: auto;
+}
+
+#navbarToggleExternalContent {
+  z-index: 3;
 }
