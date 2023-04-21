@@ -6,6 +6,12 @@ import { Collapse } from "bootstrap"
 export const NavBar = () => {
     const navigate = useNavigate()
 
+    const pageHeader = () => {
+        let thisPage =window.location.pathname.split("/")
+        let displayName = thisPage.toUpperCase()
+        return displayName
+    }
+
     return (
         <div className="pos-f-t">
             <nav className="navbar navbar-dark bg-dark">
@@ -30,7 +36,7 @@ export const NavBar = () => {
                         </div>
                     </div>
                 </button>
-            <div>{window.location.pathname.split("/")}</div>
+            <div>{pageHeader()}</div>
             </nav>
         </div>
         // <ul className="navbar">
