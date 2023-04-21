@@ -7,6 +7,7 @@ import { getMurals } from '../managers/murals_manager'
 import "./map.css"
 import { getWalkingDirectionsURL } from '../../utils/UserDirections';
 import { API } from '../managers/ApiAddresses';
+import { urlReader } from '../../utils/urlReader';
 
 export const Map = ({ activeHood }) => {
     const [murals, setMurals] = useState([])
@@ -36,13 +37,6 @@ export const Map = ({ activeHood }) => {
         }
     }, [mapRef, activeHood])
 
-    const urlReader = (url) => {
-        let [, thisUrl] = url.split("/media/")
-        thisUrl = decodeURIComponent(thisUrl)
-        thisUrl = `${API}/${thisUrl}`
-        return thisUrl
-    }
-
     const iconBuilder = (mural) => {
         const thisUrl = urlReader(mural.img)
         const marker = L.icon({
@@ -60,6 +54,15 @@ export const Map = ({ activeHood }) => {
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
+            <Marker icon={
+                L.icon({
+                    iconUrl: "https://purepng.com/public/uploads/large/heart-icon-y1k.png",
+                    iconSize: [40, 40],
+                    iconAnchor: [12, 41]
+                })
+            } 
+            position={typeof userLocation == "string"? [JSON.parse(userLocation)[0], JSON.parse(userLocation)[1]] : [36.1626638,-86.7816016]}>
+            </Marker>
             {
                 murals.map(mural => {
                     return (

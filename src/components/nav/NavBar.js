@@ -6,31 +6,53 @@ import { Collapse } from "bootstrap"
 export const NavBar = () => {
     const navigate = useNavigate()
 
+    const pageHeader = () => {
+        let displayName = ""
+        let thisPage = window.location.pathname.split("/")
+        if (thisPage.length === 2) {
+            if (thisPage[1] === "" || thisPage[1] === "home") {
+                displayName = "Nash Murals Home"
+            } else if (thisPage[1] === "hood") {
+                displayName = "Neighborhoods"
+            } else if (thisPage[1] === "murals") {
+                displayName = "Murals"
+            }
+        } else if (thisPage.length === 3) {
+            let [, thisName] = window.location.search.split("=")
+            thisName = decodeURIComponent(thisName)
+            if (thisPage[1] === "hood" || thisPage[1] === "murals") {
+                displayName = thisName
+            }
+        }
+        else { displayName = "I'm pretty sure we're lost." }
+        return displayName
+    }
+
     return (
         <div className="pos-f-t">
             <nav className="navbar navbar-dark bg-dark">
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
-                    
+
                     <div className="collapse" id="navbarToggleExternalContent">
-                        
+
                         <div className="bg-dark p-1">
                             <div className="navbar-item">
                                 <span className="navbar__link"
                                     onClick={() => navigate("/")}>Home</span>
                             </div>
                             <div className="navbar-item">
-                            <span className="navbar__link" onClick={() => navigate("/hood")}>Neighborhoods</span>
+                                <span className="navbar__link" onClick={() => navigate("/hood")}>Neighborhoods</span>
                             </div>
                             <div className="navbar-item">
-                            <span className="navbar__link"
-                                onClick={() => navigate("/murals")}>Murals</span>
-                                </div>
+                                <span className="navbar__link"
+                                    onClick={() => navigate("/murals")}>Murals</span>
+                            </div>
 
                         </div>
                     </div>
                 </button>
-            <div>{window.location.pathname.split("/")}</div>
+                <div>{pageHeader()}</div>
             </nav>
         </div>
         // <ul className="navbar">

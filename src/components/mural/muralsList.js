@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom"
 import { getMurals } from "../managers/murals_manager";
 import { API } from "../managers/ApiAddresses";
 import "./murals.css"
+import { urlReader } from "../../utils/urlReader";
 
 export const MuralsList = (props) => {
     const navigate = useNavigate()
@@ -12,13 +13,6 @@ export const MuralsList = (props) => {
     useEffect(() => {
         getMurals().then(data => setMurals(data))
     }, [])
-
-    const urlReader = (url) => {
-        let [, thisUrl] = url.split("/media/")
-        thisUrl = decodeURIComponent(thisUrl)
-        thisUrl = `${API}/${thisUrl}`
-        return thisUrl
-    }
 
     return (
         <body className="murals_body">
@@ -30,7 +24,7 @@ export const MuralsList = (props) => {
                         {/* <div className="mural__name"> {mural.title}</div> */}
                         {/* <div className="mural__location"> Location: {mural.address} </div> */}
                         <Link
-                            to={`/murals/${mural.id}`}
+                            to={`/murals/${mural.id}?name=${mural.title}`}
                             title='Click for mural detail page'
                             className="link_styles">
                         <img className="mural__img" src={urlReader(mural.img)}/>
