@@ -13,17 +13,19 @@ export const NavBar = () => {
                     <span className="navbar-toggler-icon"></span>
                     
                     <div className="collapse" id="navbarToggleExternalContent">
-                        <div className="bg-dark p-4">
-                            <div>
+                        
+                        <div className="bg-dark p-1">
+                            <div className="navbar-item">
                                 <span className="navbar__link"
                                     onClick={() => navigate("/")}>Home</span>
                             </div>
-                            <div>
+                            <div className="navbar-item">
                             <span className="navbar__link" onClick={() => navigate("/hood")}>Neighborhoods</span>
                             </div>
-
+                            <div className="navbar-item">
                             <span className="navbar__link"
                                 onClick={() => navigate("/murals")}>Murals</span>
+                                </div>
 
                         </div>
                     </div>

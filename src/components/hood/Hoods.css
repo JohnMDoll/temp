@@ -1,11 +1,11 @@
-.hoods_body {
+/* body {
   margin: 0;
   padding: 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-} 
+} */
 
 .hoods {
   display: flex;
