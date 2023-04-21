@@ -27,7 +27,7 @@ export const HoodsList = (props) => {
     }
 
     return (
-        <body>
+        <body className="hoods_body">
         <h1>Neighborhoods</h1>
 
         <article className="hoods">
