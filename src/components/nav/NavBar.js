@@ -7,8 +7,18 @@ export const NavBar = () => {
     const navigate = useNavigate()
 
     const pageHeader = () => {
-        let thisPage =window.location.pathname.split("/")
-        let displayName = thisPage.toUpperCase()
+        let displayName = ""
+        let thisPage = window.location.pathname.split("/")
+        if (thisPage.length === 2) {
+            if (thisPage[1] === "" || thisPage[1] === "home") {
+                displayName = "Nash Murals Home"
+            } else if (thisPage[1] === "hood") {
+                displayName = "Neighborhoods"
+            } else if (thisPage[1] === "murals") {
+                displayName = "Neighborhoods"
+            }
+        }
+        else { displayName = "I'm pretty sure we're lost." }
         return displayName
     }
 
@@ -17,26 +27,26 @@ export const NavBar = () => {
             <nav className="navbar navbar-dark bg-dark">
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
-                    
+
                     <div className="collapse" id="navbarToggleExternalContent">
-                        
+
                         <div className="bg-dark p-1">
                             <div className="navbar-item">
                                 <span className="navbar__link"
                                     onClick={() => navigate("/")}>Home</span>
                             </div>
                             <div className="navbar-item">
-                            <span className="navbar__link" onClick={() => navigate("/hood")}>Neighborhoods</span>
+                                <span className="navbar__link" onClick={() => navigate("/hood")}>Neighborhoods</span>
                             </div>
                             <div className="navbar-item">
-                            <span className="navbar__link"
-                                onClick={() => navigate("/murals")}>Murals</span>
-                                </div>
+                                <span className="navbar__link"
+                                    onClick={() => navigate("/murals")}>Murals</span>
+                            </div>
 
                         </div>
                     </div>
                 </button>
-            <div>{pageHeader()}</div>
+                <div>{pageHeader()}</div>
             </nav>
         </div>
         // <ul className="navbar">
