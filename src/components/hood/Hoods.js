@@ -41,7 +41,10 @@ export const HoodsList = (props) => {
                                 
                                 return <section>
                                 {/* <header className="hood__name"> {mural.id} </header> */}
+                            <Link
+                                to={`/murals/${mural.id}`}>
                                 <img className="hood__image" src={urlReader(mural.img)}/> 
+                            </Link>
                                 </section>
                         })}
                         </section>
