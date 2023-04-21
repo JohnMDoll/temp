@@ -43,7 +43,7 @@ export function HomeCarousel({ activeHood, viewedHood, hoods, setHoods }) {
         if (hoods.length > 0) {
             const hoodSlides = hoods.map(hood => {
                 return <SwiperSlide id={hood.id} title={`${hood.name}`} key={`event--${hood.id}`}>
-                    <img src={`./media/${hood.id}.jpg`} onClick={() => navigate(`/hoods/${hood.id}`)} />
+                    <img src={`./media/${hood.id}.jpg`} onClick={() => navigate(`/hood/${hood.id}?name=${hood.name}`)} />
                 </SwiperSlide>
             })
             setSlides(hoodSlides)

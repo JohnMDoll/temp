@@ -7,6 +7,7 @@ import { getMurals } from '../managers/murals_manager'
 import "./map.css"
 import { getWalkingDirectionsURL } from '../../utils/UserDirections';
 import { API } from '../managers/ApiAddresses';
+import { urlReader } from '../../utils/urlReader';
 
 export const Map = ({ activeHood }) => {
     const [murals, setMurals] = useState([])
@@ -35,13 +36,6 @@ export const Map = ({ activeHood }) => {
             map.flyTo(center, 13)
         }
     }, [mapRef, activeHood])
-
-    const urlReader = (url) => {
-        let [, thisUrl] = url.split("/media/")
-        thisUrl = decodeURIComponent(thisUrl)
-        thisUrl = `${API}/${thisUrl}`
-        return thisUrl
-    }
 
     const iconBuilder = (mural) => {
         const thisUrl = urlReader(mural.img)

@@ -15,7 +15,7 @@ export const NavBar = () => {
             } else if (thisPage[1] === "hood") {
                 displayName = "Neighborhoods"
             } else if (thisPage[1] === "murals") {
-                displayName = "Neighborhoods"
+                displayName = "Murals"
             }
         }
         else { displayName = "I'm pretty sure we're lost." }
