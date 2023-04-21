@@ -17,6 +17,12 @@ export const NavBar = () => {
             } else if (thisPage[1] === "murals") {
                 displayName = "Murals"
             }
+        } else if (thisPage.length === 3) {
+            let [, thisName] = window.location.search.split("=")
+            thisName = decodeURIComponent(thisName)
+            if (thisPage[1] === "hood" || thisPage[1] === "murals") {
+                displayName = thisName
+            }
         }
         else { displayName = "I'm pretty sure we're lost." }
         return displayName

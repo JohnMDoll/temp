@@ -5,6 +5,7 @@ import { getMurals, muralsByHood } from "../managers/murals_manager";
 import { API } from "../managers/ApiAddresses";
 import Collapsible from 'react-collapsible';
 import "./Hoods.css"
+import { urlReader } from "../../utils/urlReader";
 
 
 export const HoodsList = (props) => {
@@ -19,12 +20,12 @@ export const HoodsList = (props) => {
     // useEffect(() => {
     //     muralsByHood(hoods.id).then(data => setMurals(data))
     // }, [hoods])
-    const urlReader = (url) => {
-        let [, thisUrl] = url.split("/media/")
-        thisUrl = decodeURIComponent(thisUrl)
-        thisUrl = `${API}/${thisUrl}`
-        return thisUrl
-    }
+    // const urlReader = (url) => {
+    //     let [, thisUrl] = url.split("/media/")
+    //     thisUrl = decodeURIComponent(thisUrl)
+    //     thisUrl = `${API}/${thisUrl}`
+    //     return thisUrl
+    // }
 
     return (
         <body className="hoods_body">
@@ -42,7 +43,7 @@ export const HoodsList = (props) => {
                                 return <section>
                                 {/* <header className="hood__name"> {mural.id} </header> */}
                             <Link
-                                to={`/murals/${mural.id}?name=${mural.name}`}>
+                                to={`/murals/${mural.id}?name=${mural.title}`}>
                                 <img className="hood__image" src={urlReader(mural.img)}/> 
                             </Link>
                                 </section>

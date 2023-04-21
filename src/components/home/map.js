@@ -54,6 +54,15 @@ export const Map = ({ activeHood }) => {
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
+            <Marker icon={
+                L.icon({
+                    iconUrl: "https://purepng.com/public/uploads/large/heart-icon-y1k.png",
+                    iconSize: [40, 40],
+                    iconAnchor: [12, 41]
+                })
+            } 
+            position={[JSON.parse(userLocation)[0], JSON.parse(userLocation)[1]]}>
+            </Marker>
             {
                 murals.map(mural => {
                     return (

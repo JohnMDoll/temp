@@ -24,7 +24,7 @@ export const MuralsList = (props) => {
                         {/* <div className="mural__name"> {mural.title}</div> */}
                         {/* <div className="mural__location"> Location: {mural.address} </div> */}
                         <Link
-                            to={`/murals/${mural.id}`}
+                            to={`/murals/${mural.id}?name=${mural.title}`}
                             title='Click for mural detail page'
                             className="link_styles">
                         <img className="mural__img" src={urlReader(mural.img)}/>
