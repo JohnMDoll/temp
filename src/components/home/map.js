@@ -61,7 +61,7 @@ export const Map = ({ activeHood }) => {
                     iconAnchor: [12, 41]
                 })
             } 
-            position={[JSON.parse(userLocation)[0], JSON.parse(userLocation)[1]]}>
+            position={typeof userLocation == "string"? [JSON.parse(userLocation)[0], JSON.parse(userLocation)[1]] : [36.1626638,-86.7816016]}>
             </Marker>
             {
                 murals.map(mural => {
