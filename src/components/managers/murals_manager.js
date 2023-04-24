@@ -13,7 +13,7 @@ export const getSingleMural = (id) => {
 };
 
 export const muralsByHood = (hoods) => {
-    return fetch(`${API}/murals?hoods=${hoods}`, {
+    return fetch(`${API}/murals?hood=${hoods}`, {
     })
         .then(response => response.json())
 }
