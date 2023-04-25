@@ -1,38 +1,69 @@
-/* body {
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-} */
-
 .hoods {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  /* justify-content: center;
-  align-items: center; */
+  justify-items: center;
 }
-/* .hood_map {
-  display: flex;
-  justify-content: center;
-} */
-.hood_collapse {
-  background-color: aquamarine;
-  margin-bottom: 2px;
-  /* display: flex;
-  flex-wrap: nowrap; */
+
+.hood_collapse, .is-open {
+  background-color: rgb(213, 174, 0);
+  height: 30px;
+  margin: 3px;
   width: 100%;
   text-align: center;
-  /* justify-content: center; */
+  color: white;
+  font-size: large;
+  font-weight: bold;
+}
 
+.hood__cards{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.hood_card {
+  flex-basis: 40%;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  margin: 10px;
+  height: 200px;
+  width: 200px;
+  background-color: white;
+  border-radius: 5px;
+}
+
+.murals_collapse {
+  background-color: rgb(3, 0, 158);
+  color: white;
+  margin-bottom: 2px;
+  width: 100%;
+  text-align: center;
+}
+
+.attractions_collapse {
+  background-color: rgb(38, 35, 195);
+  color: white;
+  margin-bottom: 2px;
+  width: 100%;
+  text-align: center;
+}
+.restaurants_collapse {
+  background-color: rgb(79, 76, 216);
+  color: white;
+  margin-bottom: 2px;
+  width: 100%;
+  text-align: center;
 }
 
 .hood__murals {
   display: flex;
   flex-wrap: wrap;
 }
+
 .hood {
   margin: 1rem;
   flex: 1 0 25%;
@@ -41,8 +72,9 @@
 }
 
 .hood__image {
-  /* display: block; */
-  width: 200px;
+  max-width: 100%;
+  max-height: 90%;
+  object-fit: cover;
   height: auto;
 }
 

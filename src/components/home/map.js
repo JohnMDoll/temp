@@ -40,7 +40,7 @@ export const Map = ({ activeHood }) => {
     const iconBuilder = (mural) => {
         const thisUrl = urlReader(mural.img)
         const marker = L.icon({
-            iconUrl: thisUrl,
+            iconUrl: thisUrl ? thisUrl : "https://purepng.com/public/uploads/large/heart-icon-y1k.png",
             iconSize: [60, 60],
             iconAnchor: [12, 41],
             popupAnchor: [1, -34]
