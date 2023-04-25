@@ -36,17 +36,6 @@
   border-radius: 5px;
 }
 
-/* .is-open {
-  background-color: rgb(213, 174, 0);
-  height: 30px;
-  margin: auto;
-  width: 100%;
-  text-align: center;
-  color: white;
-  font-size: large;
-  font-weight: bold;
-} */
-
 .murals_collapse {
   background-color: rgb(3, 0, 158);
   color: white;
@@ -54,6 +43,7 @@
   width: 100%;
   text-align: center;
 }
+
 .attractions_collapse {
   background-color: rgb(38, 35, 195);
   color: white;
