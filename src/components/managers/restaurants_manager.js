@@ -1,3 +1,5 @@
+import { API } from "./ApiAddresses"
+
 export const restaurantsByHood = (hoods) => {
     return fetch(`${API}/restaurants?hood=${hoods}`, {
     })
