@@ -4,6 +4,8 @@
 
 ## Tech Used
 
+HTML | Javascript | Python | Django  
+
 ## Planning
 
 [ERD](https://dbdiagram.io/d/6425a89f5758ac5f1725826e) | [Wireframe](https://www.figma.com/file/c41g0BtkzOmTAh9ceeUTxa/Nash-Murals?node-id=0-1&t=f88rt2vlfdCrCuLZ-0)
