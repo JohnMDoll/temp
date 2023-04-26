@@ -3,16 +3,18 @@ import 'leaflet/dist/leaflet.css'
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 import { Link } from 'react-router-dom'
 import L from 'leaflet';
+import LM from 'leaflet.markercluster'
 import { getMurals } from '../managers/murals_manager'
 import "./map.css"
 import { getWalkingDirectionsURL } from '../../utils/UserDirections';
-import { API } from '../managers/ApiAddresses';
 import { urlReader } from '../../utils/urlReader';
+import { map } from 'leaflet';
 
 export const Map = ({ activeHood }) => {
     const [murals, setMurals] = useState([])
     const [userLocation, setUserLocation] = useState("[36.1626638,-86.7816016]")
     const mapRef = useRef(null)
+    let clusters = null
 
     useEffect(
         () => {
@@ -30,6 +32,11 @@ export const Map = ({ activeHood }) => {
     )
 
     useEffect(() => {
+        const clusters = markerMaker();
+        if (clusters?.type !== "div") {
+            console.log("it isn't a div")
+        }
+
         if (mapRef.current && activeHood) {
             const map = mapRef.current
             const center = [activeHood.center_latitude, activeHood.center_longitude]
@@ -48,6 +55,30 @@ export const Map = ({ activeHood }) => {
         return marker
     }
 
+    const markerMaker = () => {
+        if (murals.length > 0) {
+            const clusters = L.markerClusterGroup();
+            const markers = murals.map((mural) => {
+                const icon = iconBuilder(mural);
+                const position = [mural.latitude, mural.longitude];
+                const leafletMarker = L.marker(position, { icon });
+                leafletMarker.bindPopup(`<div style="text-align:center;">
+                <div>
+                  <Link to="/murals/${mural.id}" title="Click for mural detail page" className="link_styles"><h5>${mural.title}</h5></Link>
+                  <img class="popup--image" src="${urlReader(mural.img)}" />
+                  <div class="popup--address"><h5><div onClick="getWalkingDirectionsURL(${mural.latitude}, ${mural.longitude})" title="Click for walking directions" className="link_styles">${mural.address}</div></h5></div>
+                </div>
+              </div>`);
+                return leafletMarker;
+            });
+            clusters.addLayers(markers);
+            mapRef.current.addLayer(clusters);
+        } else {
+            return <div>Waiting for Mural data</div>;
+        }
+    }
+
+
     return <>
         <MapContainer id="map" center={[36.1626638, -86.7816016]} zoom={13} ref={map => { mapRef.current = map }}>
             <TileLayer
@@ -60,45 +91,11 @@ export const Map = ({ activeHood }) => {
                     iconSize: [40, 40],
                     iconAnchor: [12, 41]
                 })
-            } 
-            position={typeof userLocation == "string"? [JSON.parse(userLocation)[0], JSON.parse(userLocation)[1]] : [36.1626638,-86.7816016]}>
+            }
+                position={typeof userLocation == "string" ? [JSON.parse(userLocation)[0], JSON.parse(userLocation)[1]] : [36.1626638, -86.7816016]}>
             </Marker>
             {
-                murals.map(mural => {
-                    return (
-                        <>
-                            <Marker icon={iconBuilder(mural)} position={[mural.latitude, mural.longitude]} key={`marker--${mural.id}`}>
-                                <Popup>
-                                    <div style={{ textAlign: 'center' }}>
-                                        <div>
-                                            <Link
-                                                to={`/murals/${mural.id}`}
-                                                title='Click for mural detail page'
-                                                className="link_styles">
-                                                <h5>{mural.title}</h5>
-                                            </Link>
-                                            <img
-                                                className='popup--image'
-                                                src={urlReader(mural.img)} />
-                                            <div className='popup--address'>
-                                                <h5>
-                                                    <div
-                                                        onClick={() => getWalkingDirectionsURL(mural.latitude, mural.longitude)}
-                                                        title='Click for walking directions'
-                                                        className="link_styles" >
-                                                        {mural.address}
-                                                    </div>
-                                                </h5>
-                                            </div>
-
-                                        </div>
-                                        {/* <div style={{fontStyle: 'italic'}}>{mural.city}, {mural.state}</div> */}
-                                    </div>
-                                </Popup>
-                            </Marker>
-                        </>
-                    )
-                })
+                markerMaker()
             }
         </MapContainer>
     </>
