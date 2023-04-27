@@ -1,14 +1,14 @@
-/* .hoods {
+.hoods {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   justify-items: center;
-} */
+}
 
 .hood_collapse {
   background-color: #3DD8FC;
   height: 30px;
-  margin: 3px;
+  margin-bottom: 3px;
   width: 100%;
   text-align: center;
   color: white;
@@ -70,7 +70,7 @@
 }
 
 .restaurants_collapse {
-  background-color: rgb(251, 132, 192);
+  background-color: rgb(253, 164, 208);
   color: white;
   margin-bottom: 2px;
   width: 100%;
@@ -126,7 +126,6 @@
   display: block;
   text-decoration: none;
   position: relative;
-  border: 1px solid white;
   color: white;
   /* font-family: 'FontAwesome'; */
   content: "\276F";
