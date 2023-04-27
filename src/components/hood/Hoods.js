@@ -14,12 +14,32 @@ import { HoodRestaurants } from "./HoodRestaurants";
 
 export const HoodsList = (props) => {
     const navigate = useNavigate()
-    const [murals, setMurals] = useState([])
-    const [hoods, setHoods] = useState([])
+    const [hoods, setHoods] = useState([
+        {
+            id: 0,
+            hood_attractions: [],
+            hood_restaurants: []
+        }
+    ])
 
     useEffect(() => {
         getHoods().then(data => setHoods(data))
     }, [])
+
+    const displayAttractions = (hood) => {
+        if (hood.hood_attractions.length > 0) {
+            return <HoodAttractions hood_id={hood.id} hood_name={hood.name} />
+        } else {
+            return ""
+        }
+    }
+    const displayRestaurants = (hood) => {
+        if (hood.hood_attractions.length > 0) {
+            return <HoodRestaurants hood_id={hood.id} hood_name={hood.name} />
+        } else {
+            return ""
+        }
+    }
 
     return (
         <body className="hoods_body">
@@ -30,10 +50,14 @@ export const HoodsList = (props) => {
                 {
                     hoods.map(hood => {
                         return <section key={`hood--${hood.id}`} >
-                            <Collapsible className="hood_collapse" triggerOpenedClassName="hood_collapse" trigger={hood.name} >                                
+                            <Collapsible className="hood_collapse" triggerOpenedClassName="hood_collapse" trigger={hood.name} >
                                 <HoodMurals hood_id={hood.id} hood_name={hood.name} />
-                                <HoodAttractions hood_id={hood.id} hood_name={hood.name} />
-                                <HoodRestaurants hood_id={hood.id} hood_name={hood.name} />
+                                {
+                                    displayAttractions(hood)
+                                }
+                                {
+                                    displayRestaurants(hood)
+                                }
                             </Collapsible>
                         </section>
                     })
