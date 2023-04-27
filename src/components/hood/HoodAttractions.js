@@ -20,7 +20,7 @@ export const HoodAttractions = ({ hood_id, hood_name }) => {
     }, [])
 
     return <>
-        <Collapsible className="attractions_collapse" trigger={`${hood_name} Attractions`}>
+        <Collapsible className="attractions_collapse" triggerOpenedClassName="attractions_collapse" trigger={`${hood_name} Attractions`}>
             <section className="hood__cards">
                 {
                     attractions.map(attraction =>

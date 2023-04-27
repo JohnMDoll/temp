@@ -30,7 +30,7 @@ export const HoodsList = (props) => {
                 {
                     hoods.map(hood => {
                         return <section key={`hood--${hood.id}`} className="hood_map">
-                            <Collapsible className="hood_collapse" trigger={hood.name}>
+                            <Collapsible className="hood_collapse" triggerOpenedClassName="hood_collapse" trigger={hood.name} >                                
                                 <HoodMurals hood_id={hood.id} hood_name={hood.name} />
                                 <HoodAttractions hood_id={hood.id} hood_name={hood.name} />
                                 <HoodRestaurants hood_id={hood.id} hood_name={hood.name} />
