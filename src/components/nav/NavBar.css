@@ -2,7 +2,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #333;
+  font-family: 'Tilt Neon', cursive;
+  background-color: #0b032d!important;
   color: white;
   list-style: none;
   padding: auto;
@@ -10,20 +11,47 @@
   z-index: 2;
 }
 
-.navbar-toggler{
-display: flex;
+.navbar-toggler {
+  display: flex;
+  border-color: #33333300 !important;
+  ;
 }
 
 
 
-/*.collapse{
-} */
+.navbar-toggler-icon {
+  color: white;
+  background-color: rgba(61, 216, 252, 0.9);
+  opacity: 0.9;
+  border-radius: 30px;
+  box-shadow: 0 0 120px #3DD8FC,
+    0 0 10px rgb(61, 216, 252),
+    0 0 0px #3DD8FC,
+    0 0 10px rgb(61, 216, 252),
+    0 0 4px #3DD8FC,
+    0 0 1px #3DD8FC,
+    0 0 20px #3DD8FC,
+    0 0 20px #3DD8FC;
+}
 
-button.navbar-toggler{
+
+collapse-show {
+  margin-bottom: 2rem;
+}
+
+button.navbar-toggler {
   display: flex;
   flex-direction: column;
   justify-content: left;
   text-align: left;
+  text-shadow: 0 0 5px #3DD8FC,
+    0 0 5px #3DD8FC,
+    0 0 1px #3DD8FC,
+    0 0 20px #3DD8FC,
+    0 0 20px #3DD8FC,
+    0 0 3px #3DD8FC,
+    0 0 4px #3DD8FC,
+    0 0 3px #3DD8FC;
 }
 
 
@@ -31,6 +59,20 @@ button.navbar-toggler{
   h1.navbar__link {
     font-size: 17px;
   }
+}
+
+.navbar-page-title {
+  font-size: 23px;
+  font-weight: 330;
+  color: white;
+  text-shadow: 0 0 5px #3DD8FC ,
+    0 0 5px #3DD8FC ,
+    0 0 1px #3DD8FC ,
+    0 0 10px #3DD8FC ,
+    0 0 5px #3DD8FC ,
+    0 0 10px #3DD8FC ,
+    0 0 30px #3DD8FC ,
+    0 0 3px #3DD8FC ;
 }
 
 .navbar-item {
