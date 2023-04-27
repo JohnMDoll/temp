@@ -1,14 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom"
+import {useNavigate } from "react-router-dom"
 import { getHoods } from "../managers/hoods_manager";
-import { getMurals, muralsByHood } from "../managers/murals_manager";
-import { API } from "../managers/ApiAddresses";
 import Collapsible from 'react-collapsible';
 import "./Hoods.css"
-import { urlReader } from "../../utils/urlReader";
 import { HoodMurals } from "./HoodMurals";
 import { HoodAttractions } from "./HoodAttractions";
-import { LazyLoadImage } from "react-lazy-load-image-component";
 import { HoodRestaurants } from "./HoodRestaurants";
 
 
@@ -34,7 +30,7 @@ export const HoodsList = (props) => {
         }
     }
     const displayRestaurants = (hood) => {
-        if (hood.hood_attractions.length > 0) {
+        if (hood.hood_restaurants.length > 0) {
             return <HoodRestaurants hood_id={hood.id} hood_name={hood.name} />
         } else {
             return ""

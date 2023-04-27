@@ -40,8 +40,9 @@
   align-items: center;
   padding: 10px;
   margin: 10px;
-  height: 200px;
-  width: 200px;
+  height: 250px;
+  min-width: 300px;
+  width: 300px;
   background-color: white;
   border-radius: 5px;
 }
@@ -129,7 +130,7 @@
   color: white;
   /* font-family: 'FontAwesome'; */
   content: "\276F";
-  transition: transform 300ms;
+  /* transition: transform 300ms; */
 }
 
 
@@ -141,7 +142,7 @@
   right: 10px;
   top: 2px;
   display: block;
-  transition: transform 300ms;
+  /* transition: transform 300ms; */
 }
 
 .Collapsible__trigger.is-open:after {
