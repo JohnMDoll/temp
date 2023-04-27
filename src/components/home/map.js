@@ -57,13 +57,13 @@ export const Map = ({ activeHood }) => {
                 iconCreateFunction: function (cluster) {
                     const childMarkers = cluster.getAllChildMarkers()
                     const iconUrls = childMarkers.map(marker => marker.options.icon.options.iconUrl)
-                    const iconSize = 40
-                    const icons = iconUrls.map(iconUrl => `<img src="${iconUrl}" width="${iconSize}" height="${iconSize}"/>`)
+                    const iconSize = 30
+                    const icons = iconUrls.map(iconUrl => `<img src="${iconUrl}" style="width:${iconSize}px; height:${iconSize}px; min-height:${iconSize}px;"/>`)
                     return L.divIcon({
                         html: icons.join(''),
                         className: 'cluster-icon',
-                        iconSize: L.point(iconSize, iconSize),
-                    })
+                        iconSize: L.point((Math.sqrt(childMarkers.length)*iconSize+15), (Math.sqrt(childMarkers.length)*iconSize)),
+                    }) 
                 },
             })
             const markers = murals.map((mural) => {
@@ -79,17 +79,7 @@ export const Map = ({ activeHood }) => {
               </div>`);
                 return leafletMarker;
             });
-            // const clusterIcon = L.divIcon({
-            //     className: 'cluster-icon',
-            //     html: '<div><span>{clusterCount}</span></div>',
-            //     iconSize: [40, 40]
-            //   });
-
-            //   const clusters = L.markerClusterGroup({
-            //     iconCreateFunction: function(cluster) {
-            //       return clusterIcon;
-            //     }
-            //   });
+ 
             clusters.addLayers(markers);
             mapRef.current.addLayer(clusters);
         } else {
