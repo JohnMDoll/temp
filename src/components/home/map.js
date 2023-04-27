@@ -14,7 +14,6 @@ export const Map = ({ activeHood }) => {
     const [murals, setMurals] = useState([])
     const [userLocation, setUserLocation] = useState("[36.1626638,-86.7816016]")
     const mapRef = useRef(null)
-    let clusters = null
 
     useEffect(
         () => {
@@ -32,10 +31,7 @@ export const Map = ({ activeHood }) => {
     )
 
     useEffect(() => {
-        const clusters = markerMaker();
-        if (clusters?.type !== "div") {
-            console.log("it isn't a div")
-        }
+        markerMaker() //make markers and markerClusters
 
         if (mapRef.current && activeHood) {
             const map = mapRef.current
@@ -57,7 +53,19 @@ export const Map = ({ activeHood }) => {
 
     const markerMaker = () => {
         if (murals.length > 0) {
-            const clusters = L.markerClusterGroup();
+            const clusters = L.markerClusterGroup({
+                iconCreateFunction: function (cluster) {
+                    const childMarkers = cluster.getAllChildMarkers()
+                    const iconUrls = childMarkers.map(marker => marker.options.icon.options.iconUrl)
+                    const iconSize = 40
+                    const icons = iconUrls.map(iconUrl => `<img src="${iconUrl}" width="${iconSize}" height="${iconSize}"/>`)
+                    return L.divIcon({
+                        html: icons.join(''),
+                        className: 'cluster-icon',
+                        iconSize: L.point(iconSize, iconSize),
+                    })
+                },
+            })
             const markers = murals.map((mural) => {
                 const icon = iconBuilder(mural);
                 const position = [mural.latitude, mural.longitude];
@@ -71,13 +79,23 @@ export const Map = ({ activeHood }) => {
               </div>`);
                 return leafletMarker;
             });
+            // const clusterIcon = L.divIcon({
+            //     className: 'cluster-icon',
+            //     html: '<div><span>{clusterCount}</span></div>',
+            //     iconSize: [40, 40]
+            //   });
+
+            //   const clusters = L.markerClusterGroup({
+            //     iconCreateFunction: function(cluster) {
+            //       return clusterIcon;
+            //     }
+            //   });
             clusters.addLayers(markers);
             mapRef.current.addLayer(clusters);
         } else {
             return <div>Waiting for Mural data</div>;
         }
     }
-
 
     return <>
         <MapContainer id="map" center={[36.1626638, -86.7816016]} zoom={13} ref={map => { mapRef.current = map }}>
