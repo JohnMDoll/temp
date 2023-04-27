@@ -42,13 +42,19 @@ export function HomeCarousel({ activeHood, viewedHood, hoods, setHoods }) {
     useEffect(() => {
         if (hoods.length > 0) {
             const hoodSlides = hoods.map(hood => {
-                return <SwiperSlide id={hood.id} title={`${hood.name}`} key={`event--${hood.id}`}>
-                    <img src={`./media/${hood.id}.jpg`} onClick={() => navigate(`/hood/${hood.id}?name=${hood.name}`)} />
-                </SwiperSlide>
+                return (
+                    <SwiperSlide id={hood.id} title={`${hood.name}`} key={`event--${hood.id}`}>
+                        <img src={`./media/${hood.id}.jpg`} onClick={() => {
+                            if (hood.id === activeHood.id) {
+                                navigate(`/hood/${hood.id}?name=${hood.name}`)
+                            }
+                        }} />
+                    </SwiperSlide>
+                )
             })
             setSlides(hoodSlides)
         }
-    }, [hoods])
+    }, [hoods, activeHood])
 
     const navigate = useNavigate()
 

@@ -36,7 +36,7 @@ export const NavBar = () => {
 
                     <div className="collapse" id="navbarToggleExternalContent">
 
-                        <div className="bg-dark p-1">
+                        <div className="bg-dark_p-1">
                             <div className="navbar-item">
                                 <span className="navbar__link"
                                     onClick={() => navigate("/")}>Home</span>
@@ -52,7 +52,7 @@ export const NavBar = () => {
                         </div>
                     </div>
                 </button>
-                <div>{pageHeader()}</div>
+                <div className="navbar-page-title">{pageHeader()}</div>
             </nav>
         </div>
         // <ul className="navbar">
