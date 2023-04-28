@@ -41,7 +41,7 @@ export const HoodMurals = ({ hood_id, hood_name, defaultOpen }) => {
 
                 {
                     murals.map(mural =>
-                        <div className="hood_card">
+                        <div key={`hoodMural--${mural.id}`} className="hood_card">
                             {
                                 imageDisplay(mural)
                             }
