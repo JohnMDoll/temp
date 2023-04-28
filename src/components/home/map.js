@@ -67,18 +67,26 @@ export const Map = ({ activeHood }) => {
                 },
             })
             const markers = murals.map((mural) => {
-                const icon = iconBuilder(mural);
-                const position = [mural.latitude, mural.longitude];
-                const leafletMarker = L.marker(position, { icon });
-                leafletMarker.bindPopup(`<div style="text-align:center;">
-                <div>
-                  <Link to="/murals/${mural.id}" title="Click for mural detail page" className="link_styles"><h5>${mural.title}</h5></Link>
-                  <img class="popup--image" src="${urlReader(mural.img)}" />
-                  <div class="popup--address"><h5><div onClick="getWalkingDirectionsURL(${mural.latitude}, ${mural.longitude})" title="Click for walking directions" className="link_styles">${mural.address}</div></h5></div>
-                </div>
-              </div>`);
-                return leafletMarker;
-            });
+                const icon = iconBuilder(mural)
+                const position = [mural.latitude, mural.longitude]
+                const leafletMarker = L.marker(position, { icon })
+                leafletMarker.bindPopup(`
+                  <div style="text-align:center;">
+                    <div>
+                      <h5><a href="/murals/${mural.id}/?name=${mural.title}" title="Click for mural detail page" className="link_styles">${mural.title}</a></h5>
+                      <img class="popup--image" src="${urlReader(mural.img)}" />
+                      <div class="popup--address">
+                        <h5>
+                          <div onClick="getWalkingDirectionsURL(${mural.latitude}, ${mural.longitude})" title="Click for walking directions" className="link_styles">
+                            ${mural.address}
+                          </div>
+                        </h5>
+                      </div>
+                    </div>
+                  </div>
+                `)
+                return leafletMarker
+              })
  
             clusters.addLayers(markers);
             mapRef.current.addLayer(clusters);
