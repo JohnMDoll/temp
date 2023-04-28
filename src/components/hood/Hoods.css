@@ -5,8 +5,18 @@
   justify-items: center;
 }
 
-.hood_collapse, .is-open {
-  background-color: rgb(213, 174, 0);
+.hood_collapse {
+  background-color: #3DD8FC;
+  height: 30px;
+  margin-bottom: 3px;
+  width: 100%;
+  text-align: center;
+  color: white;
+  font-size: large;
+  font-weight: bold;
+}
+/* .hood_collapse.is-open:after {
+  background-color: #3DD8FC;
   height: 30px;
   margin: 3px;
   width: 100%;
@@ -14,9 +24,9 @@
   color: white;
   font-size: large;
   font-weight: bold;
-}
+} */
 
-.hood__cards{
+.hood__cards {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -30,46 +40,55 @@
   align-items: center;
   padding: 10px;
   margin: 10px;
-  height: 200px;
-  width: 200px;
+  height: 250px;
+  min-width: 300px;
+  width: 300px;
   background-color: white;
   border-radius: 5px;
 }
 
 .murals_collapse {
-  background-color: rgb(3, 0, 158);
+  background-color: rgb(255, 105, 180);
   color: white;
   margin-bottom: 2px;
   width: 100%;
   text-align: center;
 }
+/* .murals_collapse.is-open{
+  background-color: rgb(255, 105, 180);
+  color: white;
+  margin-bottom: 2px;
+  width: 100%;
+  text-align: center;
+} */
 
 .attractions_collapse {
-  background-color: rgb(38, 35, 195);
-  color: white;
-  margin-bottom: 2px;
-  width: 100%;
-  text-align: center;
-}
-.restaurants_collapse {
-  background-color: rgb(79, 76, 216);
+  background-color: rgb(255, 130, 192);
   color: white;
   margin-bottom: 2px;
   width: 100%;
   text-align: center;
 }
 
-.hood__murals {
+.restaurants_collapse {
+  background-color: rgb(253, 164, 208);
+  color: white;
+  margin-bottom: 2px;
+  width: 100%;
+  text-align: center;
+}
+
+/* .hood__murals {
   display: flex;
   flex-wrap: wrap;
-}
+} */
 
-.hood {
+/* .hood {
   margin: 1rem;
   flex: 1 0 25%;
   max-width: 25%;
   position: relative;
-}
+} */
 
 .hood__image {
   max-width: 100%;
@@ -91,3 +110,41 @@
     max-width: 100%;
   }
 }
+
+.arrow {
+  border: solid black;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+}
+
+.right {
+  transform: rotate(-15deg);
+  -webkit-transform: rotate(-15deg);
+}
+
+.Collapsible__trigger {
+  display: block;
+  text-decoration: none;
+  position: relative;
+  color: white;
+  /* font-family: 'FontAwesome'; */
+  content: "\276F";
+  /* transition: transform 300ms; */
+}
+
+
+.Collapsible__trigger:after {
+  /* font-family: 'FontAwesome'; */
+  content: "\276F";
+  transform: rotateZ(90deg);
+  position: absolute;
+  right: 10px;
+  top: 2px;
+  display: block;
+  /* transition: transform 300ms; */
+}
+
+.Collapsible__trigger.is-open:after {
+      transform: rotateZ(-90deg);
+    }
