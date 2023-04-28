@@ -39,14 +39,15 @@ export const HoodsList = (props) => {
 
     return (
         <body className="hoods_body">
-
-
             <article className="hoods">
                 {
                     hoods.map(hood => {
+
+                        const [,thisHood] = window.location.search.split('id=')
+
                         return <section key={`hood--${hood.id}`} >
-                            <Collapsible className="hood_collapse" triggerOpenedClassName="hood_collapse" trigger={hood.name} >
-                                <HoodMurals hood_id={hood.id} hood_name={hood.name} />
+                            <Collapsible className="hood_collapse" open={ thisHood == hood.id} triggerOpenedClassName="hood_collapse" trigger={hood.name} >
+                                <HoodMurals hood_id={hood.id} hood_name={hood.name} defaultOpen={thisHood == hood.id} />
                                 {
                                     displayAttractions(hood)
                                 }
