@@ -39,7 +39,6 @@ export const HoodsList = (props) => {
 
     return (
         <body className="hoods_body">
-            <h1>Neighborhoods</h1>
 
 
             <article className="hoods">
