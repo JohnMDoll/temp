@@ -18,7 +18,6 @@ export const MuralPage = (props) => {
 
     return (
         <body className="murals_body">
-        <h1>Murals</h1>
         <article className="murals">
  <section key={`mural--${murals.id}`} className="event">
                         <div >

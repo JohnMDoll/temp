@@ -46,7 +46,7 @@ export const HoodRestaurants = ({ hood_id, hood_name }) => {
 
                 {
                     restaurants.map(restaurant =>
-                        <div className="hood_card">
+                        <div key={`hoodRaunt--${restaurant.id}`} className="hood_card">
                             {
                                 imageDisplay(restaurant)
                             }

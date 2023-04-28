@@ -44,7 +44,7 @@ export const HoodAttractions = ({ hood_id, hood_name }) => {
             <section className="hood__cards">
                 {
                     attractions.map(attraction =>
-                        <div className="hood_card">
+                        <div key={`hoodTraction--${attraction.id}`} className="hood_card">
                             {
                                 imageDisplay(attraction)
                             }
