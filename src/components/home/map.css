@@ -14,3 +14,24 @@
     /* width: 20vw; */
     height: 20vh;
 }
+
+div.cluster-icon {
+    display: flex;
+    flex-wrap: wrap;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: none;
+    color: #fff;
+  }
+  
+  div.cluster-icon img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    /* object-fit: contain; */
+    border: 1px solid black;
+    
+  }
+  
