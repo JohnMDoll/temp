@@ -17,6 +17,11 @@ body {
     padding: 0;
 }
 
+.swiper-pagination-bullet-active {
+    background-color: hotpink !important;
+    box-shadow: 0 0 10px hotpink, 0 0 20px hotpink, 0 0 30px hotpink;
+}
+
 .swiper {
     width: 100%;
     padding-top: 2vh;

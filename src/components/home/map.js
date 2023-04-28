@@ -73,7 +73,7 @@ export const Map = ({ activeHood }) => {
                 leafletMarker.bindPopup(`
                   <div style="text-align:center;">
                     <div>
-                      <h5><a href="/murals/${mural.id}/?name=${mural.title}" title="Click for mural detail page" className="link_styles">${mural.title}</a></h5>
+                      <h5><a href="/murals/${mural.id}?name=${mural.title}" title="Click for mural detail page" className="link_styles">${mural.title}</a></h5>
                       <img class="popup--image" src="${urlReader(mural.img)}" />
                       <div class="popup--address">
                         <h5>
