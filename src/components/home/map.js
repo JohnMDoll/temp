@@ -1,14 +1,12 @@
 import { useEffect, useRef, useState } from 'react'
 import 'leaflet/dist/leaflet.css'
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
-import { Link } from 'react-router-dom'
 import L from 'leaflet';
 import LM from 'leaflet.markercluster'
 import { getMurals } from '../managers/murals_manager'
 import "./map.css"
 import { getWalkingDirectionsURL } from '../../utils/UserDirections';
 import { urlReader } from '../../utils/urlReader';
-import { map } from 'leaflet';
 
 export const Map = ({ activeHood }) => {
     const [murals, setMurals] = useState([])
@@ -66,8 +64,10 @@ export const Map = ({ activeHood }) => {
                     }) 
                 },
             })
+            
             const markers = murals.map((mural) => {
                 const icon = iconBuilder(mural)
+                const directions = getWalkingDirectionsURL(mural.latitude, mural.longitude)
                 const position = [mural.latitude, mural.longitude]
                 const leafletMarker = L.marker(position, { icon })
                 leafletMarker.bindPopup(`
@@ -77,9 +77,9 @@ export const Map = ({ activeHood }) => {
                       <img class="popup--image" src="${urlReader(mural.img)}" />
                       <div class="popup--address">
                         <h5>
-                          <div onClick="getWalkingDirectionsURL(${mural.latitude}, ${mural.longitude})" title="Click for walking directions" className="link_styles">
+                          <span onclick="window.open('${directions}')" title="Click for walking directions" className="link_styles">
                             ${mural.address}
-                          </div>
+                          </span>
                         </h5>
                       </div>
                     </div>
