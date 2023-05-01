@@ -5,5 +5,5 @@
 
 // To use one API or the other, comment out one API and uncomment the other
 
-export const API = 'https://orca-app-vwaxr.ondigitalocean.app'
-// export const API = 'http://localhost:8000'
+// export const API = 'https://orca-app-vwaxr.ondigitalocean.app'
+export const API = 'http://localhost:8000'
