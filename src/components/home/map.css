@@ -1,33 +1,35 @@
-#map{
-    display: flex;
-    margin-inline: auto;
-    border: 2px solid black;
-    border-radius: 15px;
-    box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.461);
-    height: 60vh;
-    width: 90vw;
+#map {
+  display: flex;
+  margin-inline: auto;
+  border: 2px solid black;
+  border-radius: 15px;
+  box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.461);
+  height: 60vh;
+  width: 95vw;
 }
 
 .popup--image {
-    display: flex;
-    margin-inline: auto;
-    /* width: 20vw; */
-    height: 20vh;
+  display: flex;
+  margin-inline: auto;
+  height: 20vh;
+  max-width: 70vw;
 }
 
 div.cluster-icon {
-    display: flex;
-    flex-wrap: wrap;
-    background-color: none;
-    color: #fff;
-  }
-  
-  div.cluster-icon img {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 20px;
-    border: 1px solid black;
-    border-radius: 5px;
-  }
-  
+  display: flex;
+  flex-wrap: wrap;
+  background-color: none;
+}
+
+div.cluster-icon img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0.1px solid black;
+  border-radius: 5px;
+}
+
+.single-marker {
+  border: 0.1px solid black;
+  border-radius: 5px;
+}
