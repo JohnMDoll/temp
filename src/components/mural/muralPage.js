@@ -1,4 +1,4 @@
-import React, { useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom"
 import { getMurals } from "../managers/murals_manager";
 import { API } from "../managers/ApiAddresses";
