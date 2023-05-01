@@ -38,7 +38,7 @@ export const HoodsList = (props) => {
     }
 
     return (
-        <body className="hoods_body">
+        <div className="hoods_body">
             <article className="hoods">
                 {
                     hoods.map(hood => {
@@ -59,6 +59,6 @@ export const HoodsList = (props) => {
                     })
                 }
             </article>
-        </body>
+        </div>
     )
 }

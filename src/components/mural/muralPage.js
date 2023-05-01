@@ -2,16 +2,19 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom"
 import { getMurals } from "../managers/murals_manager";
 import { API } from "../managers/ApiAddresses";
+import { getWalkingDirectionsURL } from '../../utils/UserDirections';
+
 import "./murals.css"
 import { urlReader } from "../../utils/urlReader";
 import { getSingleMural } from "../managers/murals_manager";
 import "./murals.css"
 
+
 export const MuralPage = (props) => {
     const navigate = useNavigate()
     const { muralId } = useParams()
-
     const [ murals, setMural ] = useState({img:""})
+    const directions = getWalkingDirectionsURL(murals.latitude, murals.longitude)
         
     useEffect(() => {
         getSingleMural(muralId).then(data => setMural(data))
@@ -30,9 +33,14 @@ export const MuralPage = (props) => {
                         </div>
         <fieldset className="murals__page">
                         <img className="mural__img" src={urlReader(murals.img)}/>
-                        <div>
+                        {/* <div>
                             {murals.address}
-                        </div>
+                        </div> */}
+                        <h5>
+                        <span onClick={() => window.open(directions)} title="Click for walking directions" className="link_styles">
+                            {murals.address}
+                        </span>
+                        </h5>
 
                         
         </fieldset>
