@@ -7,7 +7,7 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import PlaceHolderImage from "../../assets/MURALS.png"
 
 
-export const HoodMurals = ({ hood_id, hood_name }) => {
+export const HoodMurals = ({ hood_id, hood_name, defaultOpen }) => {
     const [murals, setMurals] = useState([])
 
     useEffect(() => {
@@ -36,11 +36,12 @@ export const HoodMurals = ({ hood_id, hood_name }) => {
     }
 
     return <>
-        <Collapsible className="murals_collapse" triggerOpenedClassName="murals_collapse" trigger={`${hood_name} Murals`}>
-            <section className="hood__cards" >
+        <Collapsible className="murals_collapse" triggerOpenedClassName="murals_collapse" open={defaultOpen} trigger={`${hood_name} Murals`}>
+            <section className="hood__cards">
+
                 {
                     murals.map(mural =>
-                        <div className="hood_card" key={mural.id}>
+                        <div key={`hoodMural--${mural.id}`} className="hood_card">
                             {
                                 imageDisplay(mural)
                             }

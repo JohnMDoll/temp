@@ -11,14 +11,15 @@ export const NavBar = () => {
         let thisPage = window.location.pathname.split("/")
         if (thisPage.length === 2) {
             if (thisPage[1] === "" || thisPage[1] === "home") {
-                displayName = "Nash Murals Home"
+                displayName = "Nash Murals"
             } else if (thisPage[1] === "hood") {
                 displayName = "Neighborhoods"
             } else if (thisPage[1] === "murals") {
                 displayName = "Murals"
             }
         } else if (thisPage.length === 3) {
-            let [, thisName] = window.location.search.split("=")
+            let [, thisNamePlus] = window.location.search.split("=")
+            let [thisName, ] = thisNamePlus.split('&')
             thisName = decodeURIComponent(thisName)
             if (thisPage[1] === "hood" || thisPage[1] === "murals") {
                 displayName = thisName
@@ -31,6 +32,8 @@ export const NavBar = () => {
     return (
         <div className="pos-f-t">
             <nav className="navbar navbar-dark bg-dark">
+                
+                <div className="navbar-page-title">{pageHeader()}</div>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
 
@@ -52,7 +55,6 @@ export const NavBar = () => {
                         </div>
                     </div>
                 </button>
-                <div className="navbar-page-title">{pageHeader()}</div>
             </nav>
         </div>
         // <ul className="navbar">
