@@ -42,7 +42,8 @@ export const Map = ({ activeHood }) => {
         const thisUrl = urlReader(mural.img)
         const marker = L.icon({
             iconUrl: thisUrl ? thisUrl : "https://purepng.com/public/uploads/large/heart-icon-y1k.png",
-            iconSize: [60, 60],
+            iconSize: [80, 80],
+            className: "single-marker",
             iconAnchor: [12, 41],
             popupAnchor: [1, -34]
         })
@@ -55,7 +56,7 @@ export const Map = ({ activeHood }) => {
                 iconCreateFunction: function (cluster) {
                     const childMarkers = cluster.getAllChildMarkers()
                     const iconUrls = childMarkers.map(marker => marker.options.icon.options.iconUrl)
-                    const iconSize = 30
+                    const iconSize = 40
                     const icons = iconUrls.map(iconUrl => `<img src="${iconUrl}" style="width:${iconSize}px; height:${iconSize}px; min-height:${iconSize}px;"/>`)
                     return L.divIcon({
                         html: icons.join(''),
