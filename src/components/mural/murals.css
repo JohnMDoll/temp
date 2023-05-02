@@ -12,35 +12,6 @@
     align-items: center;
     margin-top: 20px;
   }
-  .murals__page {
-    border: 2px solid black;
-    background-color: lightgray;
-    margin: 0 auto;
-    width: 750px;
-    padding: 10px;
-    justify-content: center;
-    
-  }
-
-  .mural__title {
-    font-family: 'Tilt Neon', cursive;
-    text-shadow: 0 0 2px #3DD8FC,
-    0 0 1px #3DD8FC,
-    0 0 0px #3DD8FC,
-    0 0 2px #3DD8FC,
-    0 0 10px #3DD8FC,
-    0 0 1px #3DD8FC,
-    0 0 10px #3DD8FC,
-    0 0 2px #3DD8FC;
-    width: 200px;
-    height: 300px
-  }
-  
-
-  .murals__page {
-    border-color: aqua;
-    
-  }
   
   .murals section {
     display: flex;
