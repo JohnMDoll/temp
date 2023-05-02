@@ -43,7 +43,7 @@ export const RestaurantMarkerMaker = (mapRef, restaurants) => {
             leafletMarker.bindPopup(`
               <div style="text-align:center;">
                 <div>
-                  <h5><a href="/restaurants/${raunt.id}?name=${raunt.title}" title="Click for detail page" className="link_styles">${raunt.title}</a></h5>
+                  <h5><a className="link_styles">${raunt.title}</a></h5>
                   ${raunt.img === null? 
                     `</br>`
                     :
