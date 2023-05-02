@@ -8,10 +8,13 @@ import "./map.css"
 import { MarkerMaker } from '../../utils/map/markerMakers';
 import { getRestaurants } from '../managers/restaurants_manager';
 import { RestaurantMarkerMaker } from '../../utils/map/RestaurantMarkerMakers';
+import { getAttractions } from '../managers/attractions_manager';
+import { AttractionMarkerMaker } from '../../utils/map/AttractionMarkerMakers';
 
 export const Map = ({ activeHood }) => {
     const [murals, setMurals] = useState([])
     const [restaurants, setRestaurants] = useState([])
+    const [attractions, setAttractions] = useState([])
     const [userLocation, setUserLocation] = useState("[36.1626638,-86.7816016]")
     const mapRef = useRef(null)
 
@@ -27,6 +30,12 @@ export const Map = ({ activeHood }) => {
                 getRestaurants()
                     .then((restaurantsArray) => {
                         setRestaurants(restaurantsArray)
+                    })
+            }
+            if (attractions.length === 0) {
+                getAttractions()
+                    .then((attractionsArray) => {
+                        setAttractions(attractionsArray)
                     })
             }
             
@@ -61,6 +70,7 @@ export const Map = ({ activeHood }) => {
             </Marker>
             <MarkerMaker mapRef={mapRef.current} murals={murals} />
             <RestaurantMarkerMaker mapRef={mapRef.current} restaurants={restaurants} />
+            <AttractionMarkerMaker mapRef={mapRef.current} attractions={attractions} />
         </MapContainer>
     </>
 }

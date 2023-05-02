@@ -5,3 +5,9 @@ export const attractionsByHood = (hoods) => {
     })
         .then(response => response.json())
 }
+
+export const getAttractions = () => {
+    return fetch(`${API}/attractions`, {
+    })
+        .then(response => response.json())
+}
