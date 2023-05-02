@@ -22,14 +22,14 @@ export const MuralPage = (props) => {
     
 
     return (
+        <div className="mural__container">
         <article className="mural">
             <section key={`mural--${murals.id}`} className="event">
-            <fieldset className="mural__container">
-
+{/* 
                         <h1 className="mural__title" >
                         {murals.title}
                             
-                        </h1>
+                        </h1> */}
                         <img className="murals__img" src={urlReader(murals.img)}/>
                         {/* <div>
                             {murals.address}
@@ -41,10 +41,10 @@ export const MuralPage = (props) => {
                         </h5>
 
                         
-            </fieldset>
             </section>
                 
             
         </article>
+        </div>
     )
 }

@@ -9,13 +9,15 @@
     0 0 10px #3DD8FC,
     0 0 2px #3DD8FC;
     width: 200px;
-    height: 300px
+    height: 300px;
+    margin-bottom: -200px;
 }
 
 
 
 .murals__img {
-    width: auto;
+    width: 250px;
+    height: 200px;
 }
 
 .murals section .murals__img {
@@ -31,52 +33,34 @@
     align-items: center;
     margin-top: 20px; */
     display: flex;
-    flex-direction: wrap;
     justify-content: center;
     align-items: center;
     /* display: flex; */
     /* flex-direction: column; */
-    background-color: black;
-    border-radius: 2%;
+    background-color: rgb(122, 53, 96);
+    /* border-radius: 2%;
     border-color: #c6920eb7;
     border-width: .2rem;
-    border-style:groove;
-    width: 900px;
-    height: 900px;
-    /* margin-top: 7rem;
-    margin-left: 10rem; */
-    margin: 0 auto;
+    border-style:groove; */
+    box-shadow: 0px 3px 6px 1px rgba(255, 255, 255, 0.3);
+    width: 90%;
+    height: 80%;
+    margin-top: 70px;
+    /* margin: auto; */
+    
     /* margin-top: -200; */
     overflow:scroll;
     padding-bottom: 50;
     border: inset;
     opacity: 75%;
+    color: #3DD8FC;
+
   }
 
 
-.murals__container {
+.mural__container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    /* display: flex; */
-    /* flex-direction: column; */
-    background-color: black;
-    border-radius: 2%;
-    border-color: #c6920eb7;
-    border-width: .2rem;
-    border-style:groove;
-    width: 50px;
-    height: 50px;
-    /* margin-top: 7rem;
-    margin-left: 10rem; */
-    margin: 0 auto;
-    /* margin-top: -200; */
-    overflow:scroll;
-    padding-bottom: 50;
-    border: inset;
-    opacity: 75%;
-
-    
-
 } 
