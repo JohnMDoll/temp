@@ -29,8 +29,6 @@ export const MuralsList = (props) => {
                             className="link_styles">
                         <img className="mural__img" src={urlReader(mural.img)}/>
                         </Link>
-
-                        {/* <div className="event__type">Event Type:{event?.eventType?.eventType} </div> */}
                     </section>
                 })
             }
