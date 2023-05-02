@@ -17,7 +17,6 @@ export const MuralsList = (props) => {
 
     return (
         <div className="murals_body">
-        <h1>Murals</h1>
         <article className="murals">
             {
                 murals.map(mural => {

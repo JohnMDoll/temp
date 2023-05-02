@@ -104,6 +104,10 @@
   }
 }
 
+ .hood_collapse {
+  height: 50px;
+ }
+
 @media (max-width: 576px) {
   .hood {
     flex: 1 0 100%;
@@ -128,6 +132,8 @@
   text-decoration: none;
   position: relative;
   color: white;
+  min-height: 100%;
+  align-items: center;
   /* font-family: 'FontAwesome'; */
   content: "\276F";
   /* transition: transform 300ms; */
