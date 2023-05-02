@@ -5,8 +5,10 @@ import L from 'leaflet';
 import LM from 'leaflet.markercluster'
 import { getMurals } from '../managers/murals_manager'
 import "./map.css"
-import { getWalkingDirectionsURL } from '../../utils/UserDirections';
-import { urlReader } from '../../utils/urlReader';
+import { getWalkingDirectionsURL } from '../../utils/UserDirections'
+import { urlReader } from '../../utils/urlReader'
+import cameraIcon from "../../assets/camera_icon.png"
+import cameraPin from "../../assets/camera_pin.png"
 
 export const Map = ({ activeHood }) => {
     const [murals, setMurals] = useState([])
@@ -24,7 +26,6 @@ export const Map = ({ activeHood }) => {
 
             const location = localStorage.getItem('userLocation')
             setUserLocation(location)
-
         }, []
     )
 
@@ -34,15 +35,16 @@ export const Map = ({ activeHood }) => {
         if (mapRef.current && activeHood) {
             const map = mapRef.current
             const center = [activeHood.center_latitude, activeHood.center_longitude]
-            map.flyTo(center, 13)
+            map.flyTo(center, 14)
         }
     }, [mapRef, activeHood])
 
-    const iconBuilder = (mural) => {
-        const thisUrl = urlReader(mural.img)
+    const iconBuilder = (mural) => { //uncomment and remove iconSize: [40, 40] to restore mural img icons
+        // const thisUrl = urlReader(mural.img)
         const marker = L.icon({
-            iconUrl: thisUrl ? thisUrl : "https://purepng.com/public/uploads/large/heart-icon-y1k.png",
-            iconSize: [80, 80],
+            // iconUrl: thisUrl ? thisUrl : "https://purepng.com/public/uploads/large/heart-icon-y1k.png",
+            iconUrl: cameraPin,
+            iconSize: [40, 40],
             className: "single-marker",
             iconAnchor: [12, 41],
             popupAnchor: [1, -34]
@@ -56,17 +58,27 @@ export const Map = ({ activeHood }) => {
                 iconCreateFunction: function (cluster) {
                     const childMarkers = cluster.getAllChildMarkers()
                     const iconUrls = childMarkers.map(marker => marker.options.icon.options.iconUrl)
-                    const iconSize = 40
-                    const icons = iconUrls.map(iconUrl => `<img src="${iconUrl}" style="width:${iconSize}px; height:${iconSize}px; min-height:${iconSize}px;"/>`)
+                    const iconSize = 80
+                    const icons = `<div class="cluster--container"><div class="cluster--count">${childMarkers.length}</div><img src="${cameraIcon}" style="width:${iconSize}px; height:${iconSize}px; min-height:${iconSize}px;"/></div>`
                     return L.divIcon({
-                        html: icons.join(''),
+                        html: icons,
                         className: 'cluster-icon',
-                        iconSize: L.point((Math.sqrt(childMarkers.length)*iconSize+15), (Math.sqrt(childMarkers.length)*iconSize)),
+                        iconSize: L.point(iconSize, iconSize),
+                    // uncomment below and remove up to const icons above to restore mural img clusters
+                    // const icons = iconUrls.map(iconUrl => `<img src="${iconUrl}" style="width:${iconSize}px; height:${iconSize}px; min-height:${iconSize}px;"/>`)
+                    // return L.divIcon({
+                    //     html: icons.join(''),
+                    //     className: 'cluster-icon',
+                    //     iconSize: L.point((Math.sqrt(childMarkers.length)*iconSize+15), (Math.sqrt(childMarkers.length)*iconSize)),
                     }) 
                 },
             })
             
             const markers = murals.map((mural) => {
+                const address = mural.address
+                let formattedAddress = address.replace(/(.*)\s(Nashville)/, "$1</br>$2")
+                address === ""? formattedAddress = `${mural.latitude} , ${mural.longitude}` : console.log('nah')
+                console.log(formattedAddress)
                 const icon = iconBuilder(mural)
                 const directions = getWalkingDirectionsURL(mural.latitude, mural.longitude)
                 const position = [mural.latitude, mural.longitude]
@@ -79,7 +91,7 @@ export const Map = ({ activeHood }) => {
                       <div class="popup--address">
                         <h5>
                           <span onclick="window.open('${directions}')" title="Click for walking directions" className="link_styles">
-                            ${mural.address}
+                            ${formattedAddress}
                           </span>
                         </h5>
                       </div>
@@ -97,7 +109,7 @@ export const Map = ({ activeHood }) => {
     }
 
     return <>
-        <MapContainer id="map" center={[36.1626638, -86.7816016]} zoom={13} ref={map => { mapRef.current = map }}>
+        <MapContainer id="map" center={[36.1626638, -86.7816016]} zoom={14} ref={map => { mapRef.current = map }}>
             <TileLayer
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
