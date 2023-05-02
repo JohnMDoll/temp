@@ -1,6 +1,4 @@
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 import L from 'leaflet';
-import LM from 'leaflet.markercluster'
 import attractionIcon from "../../assets/attractions_icon.png"
 import attractionPin from "../../assets/attractions_pin.png"
 import { getWalkingDirectionsURL } from '../UserDirections';
@@ -22,7 +20,6 @@ export const AttractionMarkerMaker = (mapRef, attractions) => {
         const clusters = L.markerClusterGroup({
             iconCreateFunction: (cluster) => {
                 const childMarkers = cluster.getAllChildMarkers()
-                const iconUrls = childMarkers.map(marker => marker.options.icon.options.iconUrl)
                 const iconSize = 80
                 const icons = `<div class="cluster--container"><div class="cluster--count">${childMarkers.length}</div><img src="${attractionIcon}" style="width:${iconSize}px; height:${iconSize}px; min-height:${iconSize}px;"/></div>`
                 return L.divIcon({
