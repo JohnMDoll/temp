@@ -26,10 +26,21 @@ div.cluster-icon img {
   align-items: center;
   justify-content: center;
   border: 0.1px solid black;
-  border-radius: 5px;
+  border-radius: 100%;
 }
-
+/* uncomment to restore mural img marker settings */
+/* 
 .single-marker {
   border: 0.1px solid black;
   border-radius: 5px;
+} */
+
+.cluster--count {
+  position: relative;
+  background: rgb(255, 50, 175);
+  border-radius: 100%;
+  width: fit-content;
+  padding-inline: 6px;
+  top: 20px;
+  left: 2px;
 }
