@@ -7,6 +7,7 @@ import { getMurals } from '../managers/murals_manager'
 import "./map.css"
 import { getWalkingDirectionsURL } from '../../utils/UserDirections';
 import { urlReader } from '../../utils/urlReader';
+import camIcon from '../public/camera_icon.png'
 
 export const Map = ({ activeHood }) => {
     const [murals, setMurals] = useState([])
@@ -24,7 +25,7 @@ export const Map = ({ activeHood }) => {
 
             const location = localStorage.getItem('userLocation')
             setUserLocation(location)
-
+            camera_icon
         }, []
     )
 
@@ -56,12 +57,17 @@ export const Map = ({ activeHood }) => {
                 iconCreateFunction: function (cluster) {
                     const childMarkers = cluster.getAllChildMarkers()
                     const iconUrls = childMarkers.map(marker => marker.options.icon.options.iconUrl)
-                    const iconSize = 40
-                    const icons = iconUrls.map(iconUrl => `<img src="${iconUrl}" style="width:${iconSize}px; height:${iconSize}px; min-height:${iconSize}px;"/>`)
+                    const iconSize = 80
+                    const icons = `<img src="./src/assets/camera_icon" style="width:${iconSize}px; height:${iconSize}px; min-height:${iconSize}px;"/>`
                     return L.divIcon({
-                        html: icons.join(''),
+                        html: icons,
                         className: 'cluster-icon',
-                        iconSize: L.point((Math.sqrt(childMarkers.length)*iconSize+15), (Math.sqrt(childMarkers.length)*iconSize)),
+                        iconSize: L.point(iconSize, iconSize),
+                    // const icons = iconUrls.map(iconUrl => `<img src="${iconUrl}" style="width:${iconSize}px; height:${iconSize}px; min-height:${iconSize}px;"/>`)
+                    // return L.divIcon({
+                    //     html: icons.join(''),
+                    //     className: 'cluster-icon',
+                    //     iconSize: L.point((Math.sqrt(childMarkers.length)*iconSize+15), (Math.sqrt(childMarkers.length)*iconSize)),
                     }) 
                 },
             })
