@@ -7,8 +7,6 @@ import { urlReader } from "../../utils/urlReader";
 
 export const MuralsList = (props) => {
     const navigate = useNavigate()
-    
-
     const [ murals, setMurals ] = useState([])
         
     useEffect(() => {
