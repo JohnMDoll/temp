@@ -18,6 +18,9 @@
 .murals__img {
     width: 250px;
     height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .murals section .murals__img {
@@ -50,10 +53,10 @@
     
     /* margin-top: -200; */
     overflow:scroll;
-    padding-bottom: 50;
     border: inset;
     opacity: 75%;
     color: #3DD8FC;
+    padding: 5%;
 
   }
 
