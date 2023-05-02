@@ -22,29 +22,21 @@ export const MuralPage = (props) => {
     
 
     return (
+        <div className="mural__container">
         <article className="mural">
             <section key={`mural--${murals.id}`} className="event">
-            <fieldset className="mural__container">
-
-                        <h1 className="mural__title" >
-                        {murals.title}
-                            
-                        </h1>
                         <img className="murals__img" src={urlReader(murals.img)}/>
-                        {/* <div>
-                            {murals.address}
-                        </div> */}
-                        <h5>
+                        <h4 className="mural__address">
                         <span onClick={() => window.open(directions)} title="Click for walking directions" className="link_styles">
                             {murals.address}
                         </span>
-                        </h5>
+                        </h4>
 
                         
-            </fieldset>
             </section>
                 
             
         </article>
+        </div>
     )
 }
