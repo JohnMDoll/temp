@@ -1,6 +1,4 @@
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 import L from 'leaflet';
-import LM from 'leaflet.markercluster'
 import cameraIcon from "../../assets/camera_icon.png"
 import cameraPin from "../../assets/camera_pin.png"
 import { getWalkingDirectionsURL } from '../UserDirections';
@@ -19,8 +17,8 @@ const iconBuilder = (mural) => { //uncomment and remove iconSize: [40, 40] to re
     return marker
 }
 
-export const MarkerMaker = (mapRef, murals) => {
-    if (mapRef.murals.length > 0) {
+export const MarkerMaker = ({mapRef, murals}) => {
+    if (murals.length > 0) {
         const clusters = L.markerClusterGroup({
             iconCreateFunction: (cluster) => {
                 const childMarkers = cluster.getAllChildMarkers()
@@ -41,7 +39,7 @@ export const MarkerMaker = (mapRef, murals) => {
             },
         })
 
-        const markers = mapRef.murals.map((mural) => {
+        const markers = murals.map((mural) => {
             const address = mural.address
             let formattedAddress = address.replace(/(.*)\s(Nashville)/, "$1</br>$2")
             const icon = iconBuilder(mural)
@@ -67,7 +65,7 @@ export const MarkerMaker = (mapRef, murals) => {
         })
 
         clusters.addLayers(markers);
-        mapRef.mapRef.addLayer(clusters);
+        mapRef.addLayer(clusters);
     } else {
         return <div>Waiting for Mural data</div>;
     }
