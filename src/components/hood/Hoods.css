@@ -85,6 +85,8 @@
   .hood {
     flex: 1 0 50%;
     max-width: 50%;
+  }  .hood_collapse, .murals_collapse, .attractions_collapse, .restaurants_collapse {
+    height: 50px
   }
 
   .hood_collapse, .murals_collapse, .attractions_collapse, .restaurants_collapse {
