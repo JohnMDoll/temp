@@ -13,7 +13,7 @@
 
 .navbar-toggler {
   display: flex;
-  align-items: end;
+  align-items: flex-end;
   border-color: #33333300 !important;
 }
 
