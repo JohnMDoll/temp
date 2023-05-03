@@ -6,7 +6,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-image: url(Pink_Simple_Neon_Phrase_Instagram_Story.png)!important;
-  background-size: cover!important;
+  background-size: contain!important;
   background-attachment: fixed!important;
 }
 
