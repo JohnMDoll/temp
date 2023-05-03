@@ -15,8 +15,8 @@ const iconBuilder = (attraction) => {
     return marker
 }
 
-export const AttractionMarkerMaker = (mapRef, attractions) => {
-    if (mapRef.attractions.length > 0) {
+export const AttractionMarkerMaker = ({mapRef, attractions}) => {
+    if (attractions.length > 0) {
         const clusters = L.markerClusterGroup({
             iconCreateFunction: (cluster) => {
                 const childMarkers = cluster.getAllChildMarkers()
@@ -30,7 +30,7 @@ export const AttractionMarkerMaker = (mapRef, attractions) => {
             },
         })
 
-        const markers = mapRef.attractions.map((attraction) => {
+        const markers = attractions.map((attraction) => {
             const address = attraction.address
             let formattedAddress = address.replace(/(.*)\s(Nashville)/, "$1</br>$2")
             const icon = iconBuilder(attraction)
@@ -59,7 +59,7 @@ export const AttractionMarkerMaker = (mapRef, attractions) => {
         })
 
         clusters.addLayers(markers);
-        mapRef.mapRef.addLayer(clusters);
+        mapRef.addLayer(clusters);
     } else {
         return <div>Waiting for data</div>;
     }
