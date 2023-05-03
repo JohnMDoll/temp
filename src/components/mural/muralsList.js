@@ -14,7 +14,7 @@ export const MuralsList = (props) => {
     }, [])
 
     return (
-        <div className="murals_body">
+        <div className="murals_list">
         <article className="murals">
             {
                 murals.map(mural => {
