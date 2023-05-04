@@ -35,10 +35,11 @@
   align-items: center;
   padding: 10px;
   margin: 10px;
-  height: 150px;
   min-width: 100px;
-  width: 100px;
-  background-color: white;
+  aspect-ratio: 3 / 3;
+  background-color: rgb(255, 105, 180, 0.3);
+  color: white;
+  font-size: smaller;
   border-radius: 5px;
 }
 
@@ -131,4 +132,14 @@
 
 .Collapsible__trigger.is-open:after {
   transform: rotateZ(-90deg);
+}
+
+.truncate {
+  width: 100%;
+  font-weight:bold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; 
+  padding-top: 3px;
+  margin: 0;
 }
