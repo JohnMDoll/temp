@@ -8,6 +8,15 @@
   width: 95vw;
 }
 
+.leaflet-popup-content {
+  max-width: 70vw;
+}
+
+.mural--popup--title, .attraction--popup--title, .restaurant--popup--title {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .popup--image {
   display: flex;
   margin-inline: auto;
