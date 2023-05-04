@@ -8,6 +8,8 @@ body {
   background-image: url(Pink_Simple_Neon_Phrase_Instagram_Story.png)!important;
   background-size: cover!important;
   background-attachment: fixed!important;
+  min-width: 100%!important;
+  min-height: 100%!important;
 }
 
 
