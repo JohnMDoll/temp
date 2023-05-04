@@ -21,7 +21,7 @@ const iconBuilder = (mural) => { //uncomment and remove iconSize: [40, 40] to re
     return marker
 }
 
-export const MarkerMaker = ({mapRef, murals}) => {
+export const MarkerMaker = ({mapRef, murals, visible}) => {
     if (murals.length > 0) {
         const clusters = L.markerClusterGroup({
             iconCreateFunction: (cluster) => {

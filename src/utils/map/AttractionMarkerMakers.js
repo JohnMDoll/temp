@@ -4,27 +4,27 @@ import attractionPin from "../../assets/attractions_pin.png"
 import { getWalkingDirectionsURL } from '../UserDirections';
 import { urlReader } from '../urlReader';
 
-const iconBuilder = (attraction) => {
+const iconBuilder = (attraction, visible) => {
     const marker = L.icon({
         iconUrl: attractionPin,
         iconSize: [40, 40],
-        className: "single-marker",
+        className: `single-marker visible-${visible}`,
         iconAnchor: [12, 41],
         popupAnchor: [1, -34]
     })
     return marker
 }
 
-export const AttractionMarkerMaker = ({mapRef, attractions}) => {
+export const AttractionMarkerMaker = ({mapRef, attractions, visible}) => {
     if (attractions.length > 0) {
         const clusters = L.markerClusterGroup({
             iconCreateFunction: (cluster) => {
                 const childMarkers = cluster.getAllChildMarkers()
                 const iconSize = 80
-                const icons = `<div class="cluster--container"><div class="cluster--count">${childMarkers.length}</div><img src="${attractionIcon}" style="width:${iconSize}px; height:${iconSize}px; min-height:${iconSize}px;"/></div>`
+                const icons = `<div class="cluster--container visible-${visible}"><div class="cluster--count">${childMarkers.length}</div><img src="${attractionIcon}" style="width:${iconSize}px; height:${iconSize}px; min-height:${iconSize}px;"/></div>`
                 return L.divIcon({
                     html: icons,
-                    className: 'cluster-icon',
+                    className: `cluster-icon visible-${visible}`,
                     iconSize: L.point(iconSize, iconSize),
                 })
             },
@@ -33,7 +33,7 @@ export const AttractionMarkerMaker = ({mapRef, attractions}) => {
         const markers = attractions.map((attraction) => {
             const address = attraction.address
             let formattedAddress = address.replace(/(.*)\s(Nashville)/, "$1</br>$2")
-            const icon = iconBuilder(attraction)
+            const icon = iconBuilder(attraction, visible)
             const directions = getWalkingDirectionsURL(attraction.latitude, attraction.longitude)
             const position = [attraction.latitude, attraction.longitude]
             const leafletMarker = L.marker(position, { icon })

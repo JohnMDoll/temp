@@ -15,7 +15,7 @@ const iconBuilder = (restaurant) => {
     return marker
 }
 
-export const RestaurantMarkerMaker = ({mapRef, restaurants}) => {
+export const RestaurantMarkerMaker = ({mapRef, restaurants, visible}) => {
     if (restaurants.length > 0) {
         const clusters = L.markerClusterGroup({
             iconCreateFunction: (cluster) => {

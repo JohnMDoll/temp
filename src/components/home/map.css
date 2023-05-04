@@ -66,3 +66,7 @@ img.mural--pin--inner-image {
   left: 10px;
   /* height/width in markerMarker.js */
 }
+
+.visible-false {
+  display: none;
+}

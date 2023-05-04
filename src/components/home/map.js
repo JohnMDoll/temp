@@ -21,6 +21,7 @@ export const Map = ({ activeHood }) => {
     const [restaurants, setRestaurants] = useState([])
     const [attractions, setAttractions] = useState([])
     const [userLocation, setUserLocation] = useState("[36.1626638,-86.7816016]")
+    const [iconToggles, setIconToggles] = useState([true, true, false])
     const mapRef = useRef(null)
 
     useEffect(
@@ -55,39 +56,62 @@ export const Map = ({ activeHood }) => {
             const center = [activeHood.center_latitude, activeHood.center_longitude]
             map.flyTo(center, 14)
         }
-    }, [mapRef, activeHood])
+    }, [mapRef, activeHood]
+    )
 
-    const iconBuilder = (mural) => { //uncomment and remove iconSize: [40, 40] to restore mural img icons
-        // const thisUrl = urlReader(mural.img)
-        const marker = L.icon({
-            // iconUrl: thisUrl ? thisUrl : "https://purepng.com/public/uploads/large/heart-icon-y1k.png",
-            iconUrl: cameraPin,
-            iconSize: [40, 40],
-            className: "single-marker",
-            iconAnchor: [12, 41],
-            popupAnchor: [1, -34]
-        })
-        return marker
-    }
+    useEffect(() => {
+        if (mapRef.current) {
+            const map = mapRef.current
+            const center = map.getCenter()
+            const zoom = map.getZoom()
+            map.setView(center, zoom)
+        }
+    }, [iconToggles]
+    )
 
     return <>
-        <MapContainer id="map" center={[36.1626638, -86.7816016]} zoom={14} ref={map => { mapRef.current = map }}>
+        <button type="button" onClick={() => setIconToggles([iconToggles[0], iconToggles[1], !iconToggles[2]])}>toggle attractions</button>
+
+        <MapContainer
+            id="map"
+            center={[36.1626638, -86.7816016]}
+            zoom={14}
+            ref={map => { mapRef.current = map }}>
             <TileLayer
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
-            <Marker icon={
-                L.icon({
-                    iconUrl: userPin,
-                    iconSize: [40, 40],
-                    iconAnchor: [12, 41]
-                })
-            }
-                position={typeof userLocation == "string" ? [JSON.parse(userLocation)[0], JSON.parse(userLocation)[1]] : [36.1626638, -86.7816016]}>
+            <Marker
+                icon={
+                    L.icon({
+                        iconUrl: userPin,
+                        iconSize: [40, 40],
+                        iconAnchor: [12, 41]
+                    })
+                }
+                position={typeof userLocation == "string" ?
+                    [JSON.parse(userLocation)[0], JSON.parse(userLocation)[1]]
+                    :
+                    [36.1626638, -86.7816016]}>
             </Marker>
-            {murals && <MarkerMaker mapRef={mapRef.current} murals={murals}/>}
-            {restaurants && <RestaurantMarkerMaker mapRef={mapRef.current} restaurants={restaurants}/>}
-            {attractions && <AttractionMarkerMaker mapRef={mapRef.current} attractions={attractions}/>}
+            {murals &&
+                <MarkerMaker
+                    mapRef={mapRef.current}
+                    murals={murals}
+                    visible={iconToggles[0]}
+                />}
+            {restaurants &&
+                <RestaurantMarkerMaker
+                    mapRef={mapRef.current}
+                    restaurants={restaurants}
+                    visible={iconToggles[1]}
+                />}
+            {attractions &&
+                <AttractionMarkerMaker
+                    mapRef={mapRef.current}
+                    attractions={attractions}
+                    visible={iconToggles[2]}
+                />}
         </MapContainer>
     </>
 }
