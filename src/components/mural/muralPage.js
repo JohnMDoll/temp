@@ -3,11 +3,9 @@ import { Link, useNavigate, useParams } from "react-router-dom"
 import { getMurals } from "../managers/murals_manager";
 import { API } from "../managers/ApiAddresses";
 import { getWalkingDirectionsURL } from '../../utils/UserDirections';
-
-import "./murals.css"
 import { urlReader } from "../../utils/urlReader";
 import { getSingleMural } from "../managers/murals_manager";
-import "./murals.css"
+import "./muralPage.css"
 
 
 export const MuralPage = (props) => {
@@ -24,27 +22,18 @@ export const MuralPage = (props) => {
     
 
     return (
-        <div>
-        <article className="murals">
- <section key={`mural--${murals.id}`} className="event">
-                        <div className="mural__title" >
-                        {murals.title}
-                            
-                        </div>
-        <fieldset className="murals__page">
-                        <img className="mural__img" src={urlReader(murals.img)}/>
-                        {/* <div>
-                            {murals.address}
-                        </div> */}
-                        <h5>
+        <div className="mural__container">
+        <article className="mural">
+            <section key={`mural--${murals.id}`} className="event">
+                        <img className="murals__img" src={urlReader(murals.img)}/>
+                        <h4 className="mural__address">
                         <span onClick={() => window.open(directions)} title="Click for walking directions" className="link_styles">
                             {murals.address}
                         </span>
-                        </h5>
+                        </h4>
 
                         
-        </fieldset>
-                    </section>
+            </section>
                 
             
         </article>
