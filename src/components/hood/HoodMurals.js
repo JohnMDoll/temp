@@ -23,14 +23,14 @@ export const HoodMurals = ({ hood_id, hood_name, defaultOpen }) => {
                 <Link to={`/murals/${muralObject.id}?name=${muralObject.title}`}>
                     <LazyLoadImage width={600} height={400} className="hood__image" src={image} PlaceholderSrc={PlaceHolderImage} />
                 </Link>
-                <p>{muralObject.title}</p>
+                <p className="truncate">{muralObject.title}</p>
             </>            
         } else {
             return <>
                 <Link to={`/murals/${muralObject.id}?name=${muralObject.title}`}>
                     <LazyLoadImage width={600} height={400} className="hood__image" src={PlaceHolderImage} PlaceholderSrc={PlaceHolderImage} />
                 </Link>
-                <p>{muralObject.title}</p>
+                <p className="truncate">{muralObject.title}</p>
             </>
         }
     }
