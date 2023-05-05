@@ -7,6 +7,8 @@ export const Murals = () => {
 	return ( <>
 
 					<NavBar />
+						<img className="background-picture" src="../../media/Pink_Simple_Neon_Phrase_Instagram_Story.png"></img>
+
 					<ApplicationViews />
     
         </>
