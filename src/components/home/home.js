@@ -8,6 +8,7 @@ export const Home = () => {
     const location = JSON.parse(localStorage.getItem('userLocation'))
     const [activeHood, setActiveHood] = useState({})
     const [hoods, setHoods] = useState([])
+    
 
     const closestHood = () => {
         const hoodsArr = [...hoods]

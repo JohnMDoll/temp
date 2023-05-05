@@ -13,6 +13,7 @@ export const MuralPage = (props) => {
     const { muralId } = useParams()
     const [ murals, setMural ] = useState({img:""})
     const directions = getWalkingDirectionsURL(murals.latitude, murals.longitude)
+    let offsetDistance = (document.getElementsByClassName('navbar-dark')[0]?.offsetHeight + 5)
         
     useEffect(() => {
         getSingleMural(muralId).then(data => setMural(data))
@@ -23,7 +24,8 @@ export const MuralPage = (props) => {
 
     return (
         <div className="mural__container">
-        <article className="mural">
+        <article className="mural"
+        style={{'marginTop': offsetDistance+'px'}}>
             <section key={`mural--${murals.id}`} className="event">
                         <img className="murals__img" src={urlReader(murals.img)}/>
                         <h4 className="mural__address">

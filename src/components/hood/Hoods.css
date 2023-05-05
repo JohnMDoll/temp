@@ -4,6 +4,10 @@
   justify-items: center;
 }
 
+.hoods_body {
+  margin-top: 7vh;
+}
+
 .hood_collapse {
   font-family: 'Tilt Neon', cursive;
   background-color: rgb(255, 105, 180, 0.3);

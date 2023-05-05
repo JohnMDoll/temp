@@ -9,14 +9,17 @@ import { offset } from "@popperjs/core";
 export const MuralsList = (props) => {
     const navigate = useNavigate()
     const [ murals, setMurals ] = useState([])
-
+    let offsetDistance = (document.getElementsByClassName('navbar-dark')[0]?.offsetHeight + 5)
+    
     useEffect(() => {
         getMurals().then(data => setMurals(data))
     }, [])
-
+    
+    
     return (
         // <div className="murals_list">
-        <article className="murals">
+        <article className="murals"
+            style={{'marginTop': offsetDistance+'px'}}>
             {
                 murals.map(mural => {
                     return <section key={`mural--${mural.id}`} className="event">
