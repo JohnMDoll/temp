@@ -7,7 +7,15 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-image: url(Pink_Simple_Neon_Phrase_Instagram_Story.png)!important;
   background-size: cover!important;
-  background-attachment: fixed!important;
+  background-repeat: no-repeat!important;
+  background: #eee;
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  color: #000;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  height: 100vh;
 }
 
 

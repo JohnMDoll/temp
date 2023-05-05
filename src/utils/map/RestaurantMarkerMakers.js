@@ -47,7 +47,7 @@ export const RestaurantMarkerMaker = ({mapRef, restaurants}) => {
                     `<img class="popup--image" src="${urlReader(restaurant.img)}" />`}
                   <div class="popup--address">
                     <h5>
-                      <span onclick="window.open('${directions}')" title="Click for walking directions" className="link_styles">
+                      <span onclick="window.open('${directions}')" title="Click for walking directions" className="restaurant--popup--title">
                         ${formattedAddress}
                       </span>
                     </h5>
