@@ -4,11 +4,12 @@ import { getMurals } from "../managers/murals_manager";
 import { API } from "../managers/ApiAddresses";
 import "./murals.css"
 import { urlReader } from "../../utils/urlReader";
+import { offset } from "@popperjs/core";
 
 export const MuralsList = (props) => {
     const navigate = useNavigate()
     const [ murals, setMurals ] = useState([])
-        
+
     useEffect(() => {
         getMurals().then(data => setMurals(data))
     }, [])

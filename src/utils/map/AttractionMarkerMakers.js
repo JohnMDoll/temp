@@ -4,7 +4,7 @@ import attractionPin from "../../assets/attractions_pin.png"
 import { getWalkingDirectionsURL } from '../UserDirections';
 import { urlReader } from '../urlReader';
 
-const iconBuilder = (attraction, visible) => {
+const iconBuilder = (attraction) => {
     const marker = L.icon({
         iconUrl: attractionPin,
         iconSize: [40, 40],
@@ -15,7 +15,7 @@ const iconBuilder = (attraction, visible) => {
     return marker
 }
 
-export const AttractionMarkerMaker = ({mapRef, attractions, visible}) => {
+export const AttractionMarkerMaker = ({mapRef, attractions}) => {
     if (attractions.length > 0) {
         const clusters = L.markerClusterGroup({
             iconCreateFunction: (cluster) => {
@@ -33,7 +33,7 @@ export const AttractionMarkerMaker = ({mapRef, attractions, visible}) => {
         const markers = attractions.map((attraction) => {
             const address = attraction.address
             let formattedAddress = address.replace(/(.*)\s(Nashville)/, "$1</br>$2")
-            const icon = iconBuilder(attraction, visible)
+            const icon = iconBuilder(attraction)
             const directions = getWalkingDirectionsURL(attraction.latitude, attraction.longitude)
             const position = [attraction.latitude, attraction.longitude]
             const leafletMarker = L.marker(position, { icon })
@@ -59,10 +59,8 @@ export const AttractionMarkerMaker = ({mapRef, attractions, visible}) => {
         })
 
         clusters.addLayers(markers)
-        const attractionLayer = L.layerGroup(clusters)
-        return attractionLayer
+        return {clusters}
     } else {
-        return <div>Waiting for data</div>
+        return 
     }
-    
 }

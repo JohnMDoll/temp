@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import 'leaflet/dist/leaflet.css'
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
+import { MapContainer, TileLayer, Marker, Popup, LayersControl, LayerGroup } from 'react-leaflet'
 import L from 'leaflet';
 import 'leaflet.markercluster'
 import { getMurals } from '../managers/murals_manager'
@@ -59,12 +59,18 @@ export const Map = ({ activeHood }) => {
     }, [mapRef, activeHood]
     )
 
-    useEffect(() => {
-        if (mapRef.current) {
-            const attractionMarkers = AttractionMarkerMaker({mapRef: mapRef.current, attractions: attractions, visible: iconToggles[2]})
-        }
-    }, [iconToggles]
-    )
+    // useEffect(() => {
+    //     if (mapRef.current) {
+
+    //         const attractionMarkers = AttractionMarkerMaker({ mapRef: mapRef.current, attractions: attractions })
+    //         mapRef.current.addLayer(attractionMarkers)
+
+    //         if (!mapRef.current.control) {
+    //             console.log("no control")
+    //         }
+    //     }
+    // }, [iconToggles]
+    // )
 
     return <>
         <button type="button" onClick={() => setIconToggles([iconToggles[0], iconToggles[1], !iconToggles[2]])}>toggle attractions</button>
@@ -74,10 +80,6 @@ export const Map = ({ activeHood }) => {
             center={[36.1626638, -86.7816016]}
             zoom={14}
             ref={map => { mapRef.current = map }}>
-            <TileLayer
-                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            />
             <Marker
                 icon={
                     L.icon({
@@ -91,24 +93,36 @@ export const Map = ({ activeHood }) => {
                     :
                     [36.1626638, -86.7816016]}>
             </Marker>
-            {murals &&
-                <MarkerMaker
-                    mapRef={mapRef.current}
-                    murals={murals}
-                    visible={iconToggles[0]}
-                />}
-            {restaurants &&
-                <RestaurantMarkerMaker
+                    <TileLayer
+                        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                    />
+            <LayersControl position="topright">
+                <LayersControl.Overlay checked name="Attractions">
+                    <LayerGroup>
+                    {/* {AttractionMarkerMaker({ mapRef: mapRef.current, attractions: attractions })} */}
+                    {/* {murals &&
+                        <MarkerMaker
+                        mapRef={mapRef.current}
+                        murals={murals}
+                        visible={iconToggles[0]}
+                    />} */}
+                    </LayerGroup>
+                </LayersControl.Overlay>
+                {restaurants &&
+                    <RestaurantMarkerMaker
                     mapRef={mapRef.current}
                     restaurants={restaurants}
                     visible={iconToggles[1]}
-                />}
-            {/* {attractions &&
-                <AttractionMarkerMaker
+                    />}
+                {/* <LayersControl.Overlay checked name="Attractions">
+                {attractions &&
+                    <AttractionMarkerMaker
                     mapRef={mapRef.current}
                     attractions={attractions}
-                    visible={iconToggles[2]}
-                />} */}
+                    />}
+                </LayersControl.Overlay> */}
+                </LayersControl>
         </MapContainer>
     </>
 }
