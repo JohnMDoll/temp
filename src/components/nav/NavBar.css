@@ -1,5 +1,6 @@
 .navbar {
   display: flex;
+  flex-wrap: nowrap;
   justify-content: space-between;
   align-items: center;
   font-family: 'Tilt Neon', cursive;
@@ -8,8 +9,7 @@
   list-style: none;
   padding: auto;
   margin: auto;
-  z-index: 10000;
-  position: fixed;
+  position: fixed!important;
   top: 0px;
   width: 100%;
   z-index: 2;
@@ -20,6 +20,7 @@
   align-items: flex-end;
   border-color: #33333300 !important;
 }
+
 
 
 
@@ -66,6 +67,7 @@ button.navbar-toggler {
 }
 
 .navbar-page-title {
+  word-break: break-word;
   font-size: 23px;
   font-weight: 330;
   color: white;

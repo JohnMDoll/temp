@@ -17,6 +17,7 @@ export const HoodsList = (props) => {
             hood_restaurants: []
         }
     ])
+    let offsetDistance = (document.getElementsByClassName('navbar-dark')[0]?.offsetHeight + 5)
 
     useEffect(() => {
         getHoods().then(data => setHoods(data))
@@ -39,7 +40,8 @@ export const HoodsList = (props) => {
 
     return (
         <div className="hoods_body">
-            <article className="hoods">
+            <article className="hoods"
+            style={{'marginTop': offsetDistance+'px'}}>
                 {
                     hoods.map(hood => {
 
