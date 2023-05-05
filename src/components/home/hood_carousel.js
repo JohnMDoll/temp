@@ -15,6 +15,7 @@ import { useNavigate } from "react-router-dom";
 export function HomeCarousel({ activeHood, viewedHood, hoods, setHoods }) {
     const [slides, setSlides] = useState(<SwiperSlide></SwiperSlide>)
     const [activeSlide, setActiveSlide] = useState(0)
+    let offsetDistance = (document.getElementsByClassName('navbar-dark')[0]?.offsetHeight)
 
     const getAllHoods = () => {
         getHoods().then(data => setHoods(data))
@@ -61,6 +62,7 @@ export function HomeCarousel({ activeHood, viewedHood, hoods, setHoods }) {
     return (
         <>  {activeHood &&
             <Swiper
+            style={{'marginTop': offsetDistance+'px'}}
                 effect={"coverflow"}
                 grabCursor={true}
                 centeredSlides={true}
