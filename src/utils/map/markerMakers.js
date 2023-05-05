@@ -5,10 +5,14 @@ import { getWalkingDirectionsURL } from '../UserDirections';
 import { urlReader } from '../urlReader';
 
 const iconBuilder = (mural) => { //uncomment and remove iconSize: [40, 40] to restore mural img icons
-    // const thisUrl = urlReader(mural.img)
-    const marker = L.icon({
+    const thisUrl = urlReader(mural.img)
+    const marker = L.divIcon({
         // iconUrl: thisUrl ? thisUrl : "https://purepng.com/public/uploads/large/heart-icon-y1k.png",
-        iconUrl: cameraPin,
+        html: `
+          <div class="mural--pin">
+          <img class="mural--pin--inner-image" src=${thisUrl} style="width:40px; height:40px; min-height:40px;"/>
+          <img class="mural--pin--image" src=${cameraPin}/>
+          </div>`,
         iconSize: [40, 40],
         className: "single-marker",
         iconAnchor: [12, 41],
@@ -53,7 +57,7 @@ export const MarkerMaker = ({mapRef, murals}) => {
                   <img class="popup--image" src="${urlReader(mural.img)}" />
                   <div class="popup--address">
                     <h5>
-                      <span onclick="window.open('${directions}')" title="Click for walking directions" className="link_styles">
+                      <span onclick="window.open('${directions}')" title="Click for walking directions" className="mural--popup--title">
                         ${formattedAddress}
                       </span>
                     </h5>

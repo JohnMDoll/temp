@@ -14,7 +14,7 @@ export const MuralsList = (props) => {
     }, [])
 
     return (
-        <div className="murals_list">
+        // <div className="murals_list">
         <article className="murals">
             {
                 murals.map(mural => {
@@ -31,6 +31,6 @@ export const MuralsList = (props) => {
                 })
             }
         </article>
-        </div>
+        // </div>
     )
 }

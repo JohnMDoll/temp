@@ -8,6 +8,15 @@
   width: 95vw;
 }
 
+.leaflet-popup-content {
+  min-width: 70vw;
+}
+
+.mural--popup--title, .attraction--popup--title, .restaurant--popup--title {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .popup--image {
   display: flex;
   margin-inline: auto;
@@ -43,4 +52,17 @@ div.cluster-icon img {
   padding-inline: 6px;
   top: 20px;
   left: 2px;
+}
+
+.mural--pin--image {
+  height: 60px;
+}
+
+img.mural--pin--inner-image {
+  position: relative;
+  border: 0.01px solid black;
+  border-radius: 100%;
+  top: 42px;
+  left: 10px;
+  /* height/width in markerMarker.js */
 }

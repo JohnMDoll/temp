@@ -2,24 +2,16 @@
     height: 100%
 }
 
-html,
-body {
+html {
     position: relative;
     height: 100%;
 }
 
-body {
-    background: #eee;
-    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-    font-size: 14px;
-    color: #000;
-    margin: 0;
-    padding: 0;
-}
+
 
 .swiper-pagination-bullet-active {
-    background-color: hotpink !important;
-    box-shadow: 0 0 10px hotpink, 0 0 20px hotpink, 0 0 30px hotpink;
+    background-color: rgba(61, 216, 252) !important;
+    box-shadow: 0 0 10px rgba(61, 216, 252), 0 0 20px rgba(61, 216, 252), 0 0 30px rgba(61, 216, 252);
 }
 
 .swiper {
