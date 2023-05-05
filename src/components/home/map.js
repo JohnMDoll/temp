@@ -61,10 +61,7 @@ export const Map = ({ activeHood }) => {
 
     useEffect(() => {
         if (mapRef.current) {
-            const map = mapRef.current
-            const center = map.getCenter()
-            const zoom = map.getZoom()
-            map.setView(center, zoom)
+            const attractionMarkers = AttractionMarkerMaker({mapRef: mapRef.current, attractions: attractions, visible: iconToggles[2]})
         }
     }, [iconToggles]
     )
@@ -106,12 +103,12 @@ export const Map = ({ activeHood }) => {
                     restaurants={restaurants}
                     visible={iconToggles[1]}
                 />}
-            {attractions &&
+            {/* {attractions &&
                 <AttractionMarkerMaker
                     mapRef={mapRef.current}
                     attractions={attractions}
                     visible={iconToggles[2]}
-                />}
+                />} */}
         </MapContainer>
     </>
 }

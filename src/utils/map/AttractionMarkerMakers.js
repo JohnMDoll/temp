@@ -8,7 +8,7 @@ const iconBuilder = (attraction, visible) => {
     const marker = L.icon({
         iconUrl: attractionPin,
         iconSize: [40, 40],
-        className: `single-marker visible-${visible}`,
+        className: `single-marker`,
         iconAnchor: [12, 41],
         popupAnchor: [1, -34]
     })
@@ -21,10 +21,10 @@ export const AttractionMarkerMaker = ({mapRef, attractions, visible}) => {
             iconCreateFunction: (cluster) => {
                 const childMarkers = cluster.getAllChildMarkers()
                 const iconSize = 80
-                const icons = `<div class="cluster--container visible-${visible}"><div class="cluster--count">${childMarkers.length}</div><img src="${attractionIcon}" style="width:${iconSize}px; height:${iconSize}px; min-height:${iconSize}px;"/></div>`
+                const icons = `<div class="cluster--container"><div class="cluster--count">${childMarkers.length}</div><img src="${attractionIcon}" style="width:${iconSize}px; height:${iconSize}px; min-height:${iconSize}px;"/></div>`
                 return L.divIcon({
                     html: icons,
-                    className: `cluster-icon visible-${visible}`,
+                    className: `cluster-icon`,
                     iconSize: L.point(iconSize, iconSize),
                 })
             },
@@ -58,10 +58,11 @@ export const AttractionMarkerMaker = ({mapRef, attractions, visible}) => {
             return leafletMarker
         })
 
-        clusters.addLayers(markers);
-        mapRef.addLayer(clusters);
+        clusters.addLayers(markers)
+        const attractionLayer = L.layerGroup(clusters)
+        return attractionLayer
     } else {
-        return <div>Waiting for data</div>;
+        return <div>Waiting for data</div>
     }
     
 }
