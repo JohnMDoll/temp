@@ -21,9 +21,6 @@
   border-color: #33333300 !important;
 }
 
-
-
-
 .navbar-toggler-icon {
   color: white;
   background-color: rgba(61, 216, 252, 0.9);
@@ -38,7 +35,6 @@
     0 0 10px #3DD8FC,
     0 0 2px #3DD8FC;
 }
-
 
 collapse-show {
   margin-bottom: 2rem;

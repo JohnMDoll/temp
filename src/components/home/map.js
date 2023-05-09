@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import 'leaflet/dist/leaflet.css'
 import { MapContainer, TileLayer, Marker, Popup, LayersControl, LayerGroup } from 'react-leaflet'
-import L from 'leaflet';
+import L, { MarkerClusterGroup } from 'leaflet';
 import 'leaflet.markercluster'
 import { getMurals } from '../managers/murals_manager'
 import "./map.css"
@@ -10,6 +10,8 @@ import { getWalkingDirectionsURL } from '../../utils/UserDirections'
 import { urlReader } from '../../utils/urlReader'
 import cameraIcon from "../../assets/camera_icon.png"
 import cameraPin from "../../assets/camera_pin.png"
+import attractionIcon from "../../assets/attractions_icon.png"
+import attractionPin from "../../assets/attractions_pin.png"
 import { getRestaurants } from '../managers/restaurants_manager';
 import { getAttractions } from '../managers/attractions_manager';
 import { RestaurantMarkerMaker } from '../../utils/map/RestaurantMarkerMakers';
@@ -59,6 +61,17 @@ export const Map = ({ activeHood }) => {
     }, [mapRef, activeHood]
     )
 
+    const iconBuilder = (attraction) => {
+        const marker = L.icon({
+            iconUrl: attractionPin,
+            iconSize: [40, 40],
+            className: `single-marker`,
+            iconAnchor: [12, 41],
+            popupAnchor: [1, -34]
+        })
+        return marker
+    }
+
     // useEffect(() => {
     //     if (mapRef.current) {
 
@@ -93,13 +106,26 @@ export const Map = ({ activeHood }) => {
                     :
                     [36.1626638, -86.7816016]}>
             </Marker>
-                    <TileLayer
-                        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                    />
+            <TileLayer
+                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            />
             <LayersControl position="topright">
-                <LayersControl.Overlay checked name="Attractions">
+                { (activeHood && attractions.length > 0)? <LayersControl.Overlay checked name="Attractions">
                     <LayerGroup>
+                        <MarkerClusterGroup 
+                        iconCreateFunction={ attractions.map((attraction) => {
+                                const address = attraction.address
+                                let formattedAddress = address.replace(/(.*)\s(Nashville)/, "$1</br>$2")
+                                const icon = iconBuilder(attraction)
+                                const directions = getWalkingDirectionsURL(attraction.latitude, attraction.longitude)
+                                const position = [attraction.latitude, attraction.longitude]
+                                // const leafletMarker = L.marker(position, { icon })
+                                // return leafletMarker
+                                return <Marker position={position} icon={icon}/>
+                                
+                            })}>
+                    </MarkerClusterGroup>
                     {/* {AttractionMarkerMaker({ mapRef: mapRef.current, attractions: attractions })} */}
                     {/* {murals &&
                         <MarkerMaker
@@ -107,22 +133,22 @@ export const Map = ({ activeHood }) => {
                         murals={murals}
                         visible={iconToggles[0]}
                     />} */}
-                    </LayerGroup>
-                </LayersControl.Overlay>
-                {restaurants &&
-                    <RestaurantMarkerMaker
+                </LayerGroup>
+            </LayersControl.Overlay> : <></>}
+            </LayersControl>
+            {/* {restaurants &&
+                <RestaurantMarkerMaker
                     mapRef={mapRef.current}
                     restaurants={restaurants}
                     visible={iconToggles[1]}
-                    />}
-                {/* <LayersControl.Overlay checked name="Attractions">
+                />} */}
+            {/* <LayersControl.Overlay checked name="Attractions">
                 {attractions &&
                     <AttractionMarkerMaker
                     mapRef={mapRef.current}
                     attractions={attractions}
                     />}
                 </LayersControl.Overlay> */}
-                </LayersControl>
-        </MapContainer>
+    </MapContainer >
     </>
 }

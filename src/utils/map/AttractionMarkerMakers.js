@@ -59,6 +59,7 @@ export const AttractionMarkerMaker = ({mapRef, attractions}) => {
         })
 
         clusters.addLayers(markers)
+        
         return {clusters}
     } else {
         return 
