@@ -21,7 +21,7 @@ const iconBuilder = (mural) => { //uncomment and remove iconSize: [40, 40] to re
     return marker
 }
 
-export const MarkerMaker = ({mapRef, murals, visible}) => {
+export const MarkerMaker = ({muralRef, murals}) => {
     if (murals.length > 0) {
         const clusters = L.markerClusterGroup({
             iconCreateFunction: (cluster) => {
@@ -69,7 +69,7 @@ export const MarkerMaker = ({mapRef, murals, visible}) => {
         })
 
         clusters.addLayers(markers);
-        mapRef.addLayer(clusters);
+        muralRef.addLayer(clusters);
     } else {
         return <div>Waiting for Mural data</div>;
     }

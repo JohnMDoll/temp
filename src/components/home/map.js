@@ -23,8 +23,10 @@ export const Map = ({ activeHood }) => {
     const [restaurants, setRestaurants] = useState([])
     const [attractions, setAttractions] = useState([])
     const [userLocation, setUserLocation] = useState("[36.1626638,-86.7816016]")
-    const [iconToggles, setIconToggles] = useState([true, true, false])
     const mapRef = useRef(null)
+    const attractionRef = useRef(new L.markerClusterGroup())
+    const muralRef = useRef(new L.markerClusterGroup())
+    const restaurantRef = useRef(new L.markerClusterGroup())
 
     useEffect(
         () => {
@@ -61,33 +63,7 @@ export const Map = ({ activeHood }) => {
     }, [mapRef, activeHood]
     )
 
-    const iconBuilder = (attraction) => {
-        const marker = L.icon({
-            iconUrl: attractionPin,
-            iconSize: [40, 40],
-            className: `single-marker`,
-            iconAnchor: [12, 41],
-            popupAnchor: [1, -34]
-        })
-        return marker
-    }
-
-    // useEffect(() => {
-    //     if (mapRef.current) {
-
-    //         const attractionMarkers = AttractionMarkerMaker({ mapRef: mapRef.current, attractions: attractions })
-    //         mapRef.current.addLayer(attractionMarkers)
-
-    //         if (!mapRef.current.control) {
-    //             console.log("no control")
-    //         }
-    //     }
-    // }, [iconToggles]
-    // )
-
     return <>
-        {/* <button type="button" onClick={() => setIconToggles([iconToggles[0], iconToggles[1], !iconToggles[2]])}>toggle attractions</button> */}
-
         <MapContainer
             id="map"
             center={[36.1626638, -86.7816016]}
@@ -112,46 +88,29 @@ export const Map = ({ activeHood }) => {
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
             <LayersControl position="topright">
-                {(activeHood && attractions.length > 0) ?
-                    <LayersControl.Overlay checked name="Attractions">
-                        <LayerGroup>
-                            {/* {L.markerClusterGroup( 
-                        iconCreateFunction={ attractions.map((attraction) => {
-                                const address = attraction.address
-                                let formattedAddress = address.replace(/(.*)\s(Nashville)/, "$1</br>$2")
-                                const icon = iconBuilder(attraction)
-                                const directions = getWalkingDirectionsURL(attraction.latitude, attraction.longitude)
-                                const position = [attraction.latitude, attraction.longitude]
-                                // const leafletMarker = L.marker(position, { icon })
-                                // return leafletMarker
-                                return <Marker position={position} icon={icon}/>
-                                
-                            })}
-                        })} */}
-                            {/* {AttractionMarkerMaker({ mapRef: mapRef.current, attractions: attractions })} */}
-                            <AttractionMarkerMaker mapRef={mapRef.current} attractions={attractions} />
-                            {/* {murals &&
-                        <MarkerMaker
-                        mapRef={mapRef.current}
-                        murals={murals}
-                        visible={iconToggles[0]}
-                    />} */}
+
+                    <LayersControl.Overlay checked name="Murals">
+                        <LayerGroup ref={mural => { muralRef.current = mural }}>
+                            {murals &&
+                                <MarkerMaker muralRef={muralRef.current} murals={murals} />}
                         </LayerGroup>
-                    </LayersControl.Overlay> : <></>}
+                    </LayersControl.Overlay>
+
+                    <LayersControl.Overlay checked name="Restaurants">
+                        <LayerGroup ref={restaurant => { restaurantRef.current = restaurant }}>
+                            {restaurants &&
+                                <RestaurantMarkerMaker restaurantRef={restaurantRef.current} restaurants={restaurants} />}
+                        </LayerGroup>
+                    </LayersControl.Overlay>
+
+                    <LayersControl.Overlay checked name="Attractions">
+                        <LayerGroup ref={attraction => { attractionRef.current = attraction }}>
+                            {attractions &&
+                                <AttractionMarkerMaker attractionRef={attractionRef.current} attractions={attractions} />}
+                        </LayerGroup>
+                    </LayersControl.Overlay>
+                    
             </LayersControl>
-            {/* {restaurants &&
-                <RestaurantMarkerMaker
-                    mapRef={mapRef.current}
-                    restaurants={restaurants}
-                    visible={iconToggles[1]}
-                />} */}
-            {/* <LayersControl.Overlay checked name="Attractions">
-                {attractions &&
-                    <AttractionMarkerMaker
-                    mapRef={mapRef.current}
-                    attractions={attractions}
-                    />}
-                </LayersControl.Overlay> */}
         </MapContainer >
     </>
 }

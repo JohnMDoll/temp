@@ -15,7 +15,7 @@ const iconBuilder = (attraction) => {
     return marker
 }
 
-export const AttractionMarkerMaker = ({mapRef, attractions}) => {
+export const AttractionMarkerMaker = ({attractionRef, attractions}) => {
     if (attractions.length > 0) {
         const clusters = L.markerClusterGroup({
             iconCreateFunction: (cluster) => {
@@ -59,7 +59,7 @@ export const AttractionMarkerMaker = ({mapRef, attractions}) => {
         })
 
         clusters.addLayers(markers)
-        mapRef.addLayer(clusters)
+        attractionRef.addLayer(clusters)
         return 
     } else {
         return 
