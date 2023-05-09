@@ -92,7 +92,8 @@ export const Map = ({ activeHood }) => {
             id="map"
             center={[36.1626638, -86.7816016]}
             zoom={14}
-            ref={map => { mapRef.current = map }}>
+            ref={map => { mapRef.current = map }}
+            maxZoom={24}>
             <Marker
                 icon={
                     L.icon({
@@ -111,10 +112,10 @@ export const Map = ({ activeHood }) => {
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
             <LayersControl position="topright">
-                { (activeHood && attractions.length > 0)? 
-                <LayersControl.Overlay checked name="Attractions">
-                    <LayerGroup>
-                        {/* {L.markerClusterGroup( 
+                {(activeHood && attractions.length > 0) ?
+                    <LayersControl.Overlay checked name="Attractions">
+                        <LayerGroup>
+                            {/* {L.markerClusterGroup( 
                         iconCreateFunction={ attractions.map((attraction) => {
                                 const address = attraction.address
                                 let formattedAddress = address.replace(/(.*)\s(Nashville)/, "$1</br>$2")
@@ -127,16 +128,16 @@ export const Map = ({ activeHood }) => {
                                 
                             })}
                         })} */}
-                    {/* {AttractionMarkerMaker({ mapRef: mapRef.current, attractions: attractions })} */}
-                    <AttractionMarkerMaker mapRef={mapRef.current} attractions={attractions} />
-                    {/* {murals &&
+                            {/* {AttractionMarkerMaker({ mapRef: mapRef.current, attractions: attractions })} */}
+                            <AttractionMarkerMaker mapRef={mapRef.current} attractions={attractions} />
+                            {/* {murals &&
                         <MarkerMaker
                         mapRef={mapRef.current}
                         murals={murals}
                         visible={iconToggles[0]}
                     />} */}
-                </LayerGroup>
-            </LayersControl.Overlay> : <></>}
+                        </LayerGroup>
+                    </LayersControl.Overlay> : <></>}
             </LayersControl>
             {/* {restaurants &&
                 <RestaurantMarkerMaker
@@ -151,6 +152,6 @@ export const Map = ({ activeHood }) => {
                     attractions={attractions}
                     />}
                 </LayersControl.Overlay> */}
-    </MapContainer >
+        </MapContainer >
     </>
 }
