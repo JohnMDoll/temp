@@ -86,7 +86,7 @@ export const Map = ({ activeHood }) => {
     // )
 
     return <>
-        <button type="button" onClick={() => setIconToggles([iconToggles[0], iconToggles[1], !iconToggles[2]])}>toggle attractions</button>
+        {/* <button type="button" onClick={() => setIconToggles([iconToggles[0], iconToggles[1], !iconToggles[2]])}>toggle attractions</button> */}
 
         <MapContainer
             id="map"
@@ -111,9 +111,10 @@ export const Map = ({ activeHood }) => {
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
             <LayersControl position="topright">
-                { (activeHood && attractions.length > 0)? <LayersControl.Overlay checked name="Attractions">
+                { (activeHood && attractions.length > 0)? 
+                <LayersControl.Overlay checked name="Attractions">
                     <LayerGroup>
-                        <MarkerClusterGroup 
+                        {/* {L.markerClusterGroup( 
                         iconCreateFunction={ attractions.map((attraction) => {
                                 const address = attraction.address
                                 let formattedAddress = address.replace(/(.*)\s(Nashville)/, "$1</br>$2")
@@ -124,9 +125,10 @@ export const Map = ({ activeHood }) => {
                                 // return leafletMarker
                                 return <Marker position={position} icon={icon}/>
                                 
-                            })}>
-                    </MarkerClusterGroup>
+                            })}
+                        })} */}
                     {/* {AttractionMarkerMaker({ mapRef: mapRef.current, attractions: attractions })} */}
+                    <AttractionMarkerMaker mapRef={mapRef.current} attractions={attractions} />
                     {/* {murals &&
                         <MarkerMaker
                         mapRef={mapRef.current}
